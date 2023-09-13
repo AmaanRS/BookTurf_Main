@@ -10,7 +10,7 @@ cd /Users/wasay/Documents/django-env/
 Step 2:
 source bookturf-env/bin/activate
 Step 3:
-cd /Users/wasay/Documents/GitHub/BookTurfs-Main/BookTurf/BookTurf
+cd /Users/wasay/Documents/GitHub/BookTurf_Main/BookTurf/BookTurf
 Step 4:
 python3 manage.py runserver
 Step 5:
