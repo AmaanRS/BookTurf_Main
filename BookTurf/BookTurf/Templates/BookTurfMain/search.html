@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Search</title>
+    <link
+      rel="stylesheet"
+      href="{% static '/BookTurfMain/pages/Search_page/search_style.css' %}"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <script
+      src="{% static '/BookTurfMain/pages/Search_page/search_script.js' %}"
+      defer
+    ></script>
+    <script
+      src="{% static '/BookTurfMain/pages/Search_page/dates.js' %}"
+      defer
+    ></script>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="search-container">
+      <div class="close-button">
+        <div class="close-icon" onclick="closeSearchPage()">&times;</div>
+      </div>
+      <h2 class="search-heading">bookturfs.in</h2>
+      {% comment %}
+      <!-- <form action="{% url 'submit_form' %}" method="post"> -->
+      {% endcomment %}
+      <form id="myForm" class="myForm">
+        {% csrf_token %}
+        <div class="search-block" onclick="toggleContent('sports')">
+          <button class="block-heading" id="selected-sport-heading">
+            Which sport?
+          </button>
+          <div class="content">
+            <input
+              type="radio"
+              name="sport"
+              id="cricket"
+              value="Cricket"
+              onchange="updateSelectedSport(this)"
+            />
+            <label for="cricket" class="cricket">
+              <div class="dot"></div>
+              <div class="text">Cricket</div>
+            </label>
+            <br />
+            <input
+              type="radio"
+              name="sport"
+              id="football"
+              value="Football"
+              onchange="updateSelectedSport(this)"
+            />
+            <label for="football" class="football">
+              <div class="dot"></div>
+              <div class="text">Football</div>
+            </label>
+            <br />
+
+            <input
+              type="radio"
+              name="sport"
+              id="any"
+              value="Any"
+              onchange="updateSelectedSport(this)"
+            />
+            <label for="any" class="any">
+              <div class="dot"></div>
+              <div class="text">Any</div>
+            </label>
+          </div>
+        </div>
+        <div class="search-blocks">
+          <div class="searchs-container">
+            <div class="search-element">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Enter city or turf name..."
+                id="search-input"
+              />
+              <ul class="search-list" id="search-list"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">
+          <date-picker format="DDD MMMM DD, YYYY"></date-picker>
+          {% comment %}
+          <!-- <input type="date" name="date-toggle" class="date-toggle" /> -->
+          {% endcomment %}
+        </div>
+        <div class="time-slots">
+          <div class="icon">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+          </div>
+          <ul class="tabs-box">
+            <li class="tab" value="5-6 am">5-6 am</li>
+            <li class="tab" value="6-7 am">6-7 am</li>
+            <li class="tab" value="7-8 am">7-8 am</li>
+            <li class="tab" value="8-9 am">8-9 am</li>
+            <li class="tab" value="9-10 am">9-10 am</li>
+            <li class="tab" value="10-11 am">10-11 am</li>
+            <li class="tab" value="11-12 pm">11-12 pm</li>
+            <li class="tab" value="12-1 pm">12-1 pm</li>
+            <li class="tab" value="1-2 pm">1-2 pm</li>
+            <li class="tab" value="2-3 pm">2-3 pm</li>
+            <li class="tab" value="3-4 pm">3-4 pm</li>
+            <li class="tab" value="4-5 pm">4-5 pm</li>
+            <li class="tab active" value="5-6 pm">5-6 pm</li>
+            <li class="tab" value="6-7 pm">6-7 pm</li>
+            <li class="tab" value="7-8 pm">7-8 pm</li>
+            <li class="tab" value="8-9 pm">8-9 pm</li>
+            <li class="tab" value="9-10 pm">9-10 pm</li>
+            <li class="tab" value="10-11 pm">10-11 pm</li>
+            <li class="tab" value="11-12 am">11-12 am</li>
+            <li class="tab" value="12-1 am">12-1 am</li>
+            <li class="tab" value="1-2 am">1-2 am</li>
+            <li class="tab" value="2-3 am">2-3 am</li>
+            <li class="tab" value="3-4 am">3-4 am</li>
+            <li class="tab" value="4-5 am">4-5 am</li>
+          </ul>
+          <div class="icon">
+            <i id="right" class="fa-solid fa-angle-right"></i>
+          </div>
+        </div>
+        <input type="hidden" class="timees" value="" />
+        <div class="search-button-container">
+          <button class="search-button" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      //sport select script
+      function toggleContent(id) {
+        var block = document.querySelector(".search-block");
+        block.classList.toggle("show");
+      }
+
+      function closeSearchPage() {
+        window.close();
+      }
+
+      function updateSelectedSport(radio) {
+        var selectedSport = radio.value;
+        var selectedSportHeading = document.getElementById(
+          "selected-sport-heading"
+        );
+        selectedSportHeading.textContent = selectedSport;
+      }
+
+      function toggleContent(id) {
+        var block = document.querySelector(".search-block");
+        block.classList.toggle("show");
+      }
+
+      function closeSearchPage() {
+        window.close();
+      }
+
+      function updateSelectedSport(radio) {
+        const selectedSportButton = document.getElementById(
+          "selected-sport-heading"
+        );
+        selectedSportButton.textContent = radio.value;
+        selectedSportButton.value = radio.value; // Update the value attribute
+      }
+    </script>
+
+    <script>
+      //timeslot
+      const tabsBox = document.querySelector(".time-slots .tabs-box");
+      const allTabs = tabsBox.querySelectorAll(".tab");
+      const arrowIcons = document.querySelectorAll(".time-slots .icon i");
+      const hiddenInput = document.querySelector(".timees");
+
+      let isDragging = false;
+
+      const handleIcons = (scrollVal) => {
+        let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
+        arrowIcons[0].parentElement.style.display =
+          scrollVal <= 0 ? "none" : "flex";
+        arrowIcons[1].parentElement.style.display =
+          maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
+      };
+
+      arrowIcons.forEach((icon) => {
+        icon.addEventListener("click", () => {
+          let scrollWidth = (tabsBox.scrollLeft +=
+            icon.id === "left" ? -340 : 340);
+          handleIcons(scrollWidth);
+        });
+      });
+
+      allTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabsBox.querySelector(".active").classList.remove("active");
+          tab.classList.add("active");
+
+          // Update the hidden input's value
+          hiddenInput.value = tab.getAttribute("value");
+        });
+      });
+
+      // Set the default start to the middle (3-4 pm)
+      const defaultScrollPosition =
+        tabsBox.scrollWidth / 2 - tabsBox.clientWidth / 2;
+      tabsBox.scrollLeft = defaultScrollPosition;
+      handleIcons(defaultScrollPosition);
+
+      const dragging = (e) => {
+        if (!isDragging) return;
+        tabsBox.classList.add("dragging");
+        tabsBox.scrollLeft -= e.movementX;
+        handleIcons(tabsBox.scrollLeft);
+      };
+
+      const dragStop = () => {
+        isDragging = false;
+        tabsBox.classList.remove("dragging");
+      };
+
+      tabsBox.addEventListener("mousedown", () => (isDragging = true));
+      tabsBox.addEventListener("mousemove", dragging);
+      document.addEventListener("mouseup", dragStop);
+    </script>
+
+    {% comment %}
+    <!-- <script>
+      // Function to handle form submission
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting the traditional way
+
+          // Capture form values
+          const selectedSport = document.querySelector(
+            'input[name="sport"]:checked'
+          ).value;
+          const searchInput = document.getElementById("search-input").value;
+          const datePickerValue = document.querySelector(".date-toggle").value; // Updated selector for date input
+          const selectedTimeSlots = document
+            .querySelector(".time-slots .tab.active")
+            .getAttribute("value");
+
+          // Display values in the console
+          console.log("Selected Sport:", selectedSport);
+          console.log("Search Input:", searchInput);
+          console.log("Date Picker Value:", datePickerValue);
+          console.log("Selected Time Slot:", selectedTimeSlots);
+
+          // You can also capture and log the other values if needed
+
+          // Now you can perform any additional processing or actions here
+
+          // For demonstration purposes, we can reset the form fields after submission
+          this.reset();
+        });
+    </script> -->
+    {% endcomment %} {% comment %}
+    <script>
+      // Function to handle form submission
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting the traditional way
+
+          // Capture form values
+          const selectedSport = document.querySelector(
+            'input[name="sport"]:checked'
+          ).value;
+          const searchInput = document.getElementById("search-input").value;
+          const datePickerElement = document.querySelector("date-picker"); // Select the custom element
+          const dateToggleValue = datePickerElement.getDateToggleValue();
+          const selectedTimeSlots = document
+            .querySelector(".time-slots .tab.active")
+            .getAttribute("value");
+
+          // Display values in the console
+          console.log("Selected Sport:", selectedSport);
+          console.log("Search Input:", searchInput);
+          console.log("Date Toggle Value:", dateToggleValue);
+          console.log("Selected Time Slot:", selectedTimeSlots);
+
+          // You can also capture and log the other values if needed
+
+          // Now you can perform any additional processing or actions here
+
+          // For demonstration purposes, we can reset the form fields after submission
+          this.reset();
+        });
+    </script>
+    {% endcomment %}
+    <script>
+      // Function to handle form submission
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting the traditional way
+
+          // Capture form values
+          const selectedSport = document.querySelector(
+            'input[name="sport"]:checked'
+          ).value;
+          const searchInput = document.getElementById("search-input").value;
+          const datePickerElement = document.querySelector("date-picker");
+          const dateToggleValue = datePickerElement.getDateToggleValue();
+          const selectedTimeSlots = document
+            .querySelector(".time-slots .tab.active")
+            .getAttribute("value");
+
+          // Create an object to store the form data
+          const formData = {
+            selectedSport,
+            searchInput,
+            dateToggleValue,
+            selectedTimeSlots,
+          };
+
+          // Send the data to Django using Ajax
+          const csrfToken = document.querySelector(
+            "[name=csrfmiddlewaretoken]"
+          ).value;
+
+          $.ajax({
+            type: "POST",
+            url: "{% url 'ajax_handle_request' %}", // Update with the correct URL
+            data: formData,
+            headers: {
+              "X-CSRFToken": csrfToken,
+            },
+            success: function (response) {
+              // Handle the response from Django here (e.g., display a success message)
+              console.log("Form submitted successfully.");
+              console.log("Response from Django:", response);
+            },
+            error: function (error) {
+              // Handle any errors that occur during the Ajax request
+              console.error("Ajax request error:", error);
+            },
+          });
+
+          // You can also capture and send other form values if needed
+
+          // For demonstration purposes, we can reset the form fields after submission
+          this.reset();
+        });
+    </script>
+
+    <script src="{% static '/BookTurfMain/pages/Search_page/location.js' %}"></script>
+  </body>
+</html>

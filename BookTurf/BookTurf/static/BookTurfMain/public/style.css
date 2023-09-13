@@ -1,0 +1,265 @@
+/* Reset some default styles 
+color: #F3694E #196670  #dde2e9
+#474747*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "Poppins", sans-serif;
+}
+
+/* Set a background color */
+body {
+  background-color: white;
+  margin-right: 10px;
+}
+
+/* Header styles */
+header {
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add any additional header styles you need */
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  z-index: 999;
+}
+.login {
+  width: 2rem;
+  margin: 10px;
+}
+
+.logo img {
+  width: 3rem;
+  margin-right: 10px;
+}
+
+.login-signup a {
+  margin-left: 20px;
+}
+
+.search-bar {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.search-bar {
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.search-box {
+  padding: 10px 50px;
+  margin: 0px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #dde2e9;
+}
+.search-icon {
+  width: 18px; /* Adjust the width as needed */
+  height: 18px; /* Adjust the height as needed */
+}
+
+.search-bar button {
+  padding: 13px 20px;
+  margin: 0px;
+  border-top-right-radius: 20px; /* Rounded border radius on the top right corner of Element 2 */
+  border-bottom-right-radius: 20px;
+  background-color: #196670;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.turf-info {
+  margin-left: 5px;
+  margin-right: 0px;
+}
+.turf-info-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.turf-ratings {
+  display: flex;
+  align-items: center;
+}
+.star-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("/static/BookTurfMain/assets/star.png") no-repeat center center;
+  background-size: cover;
+  margin-right: 3px;
+  margin-bottom: 1px;
+}
+
+/* Main content styles */
+main {
+  /* Add your main content styles here */
+}
+
+/* Footer styles */
+footer {
+  background-color: #dde2e9;
+  padding: 20px;
+  /* Add any additional footer styles you need */
+}
+
+.footer-links ul {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-links li {
+  margin: 0 10px;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+}
+
+.footer-social-icons {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.footer-social-icons a {
+  margin: 0 5px;
+}
+
+.footer-social-icons img {
+  width: 24px;
+}
+
+/* tab section */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #dde2e9;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33.33%;
+  height: 100%;
+  cursor: pointer;
+  color: #000;
+  font-size: 24px;
+  transition: background-color 0.3s;
+}
+
+.tab:hover {
+  background-color: white;
+}
+.tab img {
+  width: 2rem;
+  padding-top: 10px;
+}
+
+.turf-profile {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.turf-profile:first-child {
+  padding-top: 110px;
+}
+
+.turf-image {
+  flex: 0 0 10rem; /* Adjust the width of the image column as needed */
+}
+
+.turf-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+.turf-info {
+  flex-grow: 1;
+
+  margin-left: 2px;
+}
+
+.turf-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.turf-price,
+.turf-location {
+  margin: 5px 0;
+}
+
+a.turf-click,
+a.turf-click:visited,
+a.turf-click:hover,
+a.turf-click:focus,
+a.turf-click:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*second nav bar*/
+.second-navbar {
+  position: fixed;
+  top: 60px; /* Adjust the top position based on the height of the main navigation bar */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  padding-top: 20px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.rounded-block {
+  background-color: #dde2e9;
+  border-radius: 17px;
+  padding: 10px;
+}
+
+.property {
+  font-weight: normal;
+  padding: 10px;
+}

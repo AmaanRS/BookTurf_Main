@@ -1,0 +1,129 @@
+{% extends 'BookTurfMain/BookTurfBase.html' %} 
+{% load static %} 
+{% block head %}
+<title>BookTurfs - book nearest turf in Mira-Bhayandar</title>
+<link rel="stylesheet" href="{% static '/BookTurfMain/public/style.css' %}" />
+{% endblock head %} 
+{% block body %}
+<header>
+  <nav>
+    <div class="logo">
+      <img
+        src="{%  static '/BookTurfMain/assets/logomain.png' %}"
+        alt="Book Turf Logo"
+      />
+    </div>
+    <a href="/BookTurf/BookTurfMain/search/" class="turf-click">
+      <div class="search-bar">
+        <div class="search-box">Search</div>
+        <button type="submit">
+          <img
+            src="{% static 'BookTurfMain/assets/search (1).png'%}"
+            class="search-icon"
+          />
+        </button>
+      </div>
+    </a>
+    <div class="login-signup">
+      <a href="/BookTurf/BookTurfMain/sign_up"
+        ><img
+          src="{% static 'BookTurfMain/assets/user (1).png'%}"
+          class="login"
+      /></a>
+    </div>
+  </nav>
+  <div class="second-navbar">
+    <div class="nav-item">
+      <div class="rounded-block">
+        <span class="property">Sports</span>
+      </div>
+    </div>
+    <div class="nav-item">
+      <div class="rounded-block">
+        <span class="property">Time</span>
+      </div>
+    </div>
+    <div class="nav-item">
+      <div class="rounded-block">
+        <span class="property">Date</span>
+      </div>
+    </div>
+    <div class="nav-item">
+      <div class="rounded-block">
+        <span class="property">Sort</span>
+      </div>
+    </div>
+  </div>
+</header>
+{% for profile in profiles %}
+<main>
+  <a
+    href="/BookTurf/BookTurfMain/turf_profile/{{profile.turf_id}}/"
+    class="turf-click"
+  >
+    <div class="turf-profile">
+      <div class="turf-image">
+        {% for key,pic in pics.items %} 
+        {% if pic.turf_ref_id == profile.turf_id %}
+        <img
+          src="{{pic.turf_picture.url}}"
+          alt="Turf Image"
+          class="pic_index_one"
+        />
+        {% endif %} 
+        {% endfor %}
+      </div>
+      <div class="turf-info">
+        <div class="turf-info-head">
+          <h3 class="turf-name">{{profile.turf_name}}</h3>
+          <div class="turf-ratings">
+            <div class="star-icon"></div>
+            <p>{{profile.turf_rating}}</p>
+          </div>
+        </div>
+        <p class="turf-location">{{profile.turf_address}}</p>
+        <h4 class="turf-price">₹{{profile.turf_price}}</h4>
+      </div>
+    </div>
+  </a>
+</main>
+{% endfor %}
+<footer>
+  <div class="footer-links">
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Community</a></li>
+      <li><a href="#">Host</a></li>
+      <li><a href="#">Support</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Privacy</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="tab-bar">
+  <a href="/BookTurf/BookTurfMain/index/" class="tab">
+    <span class="tab-label"
+      ><img src="{% static 'BookTurfMain/assets/icons8-home-144.png'%}"
+    /></span>
+  </a>
+  <a href="#" class="tab">
+    <span class="tab-label"
+      ><img src="{% static 'BookTurfMain/assets/appointment.png'%}"
+    /></span>
+  </a>
+  <a href="/BookTurf/BookTurfMain/sign_up" class="tab">
+    <span class="tab-label"
+      ><img src="{% static 'BookTurfMain/assets/user (1).png'%}"
+    /></span>
+  </a>
+ 
+  <script>
+
+      var allPics = document.getElementsByClassName("pic_index_one");
+      if (allPics.length >= 2) {
+        allPics[1].remove();
+
+      }
+  </script>
+  {% endblock body %}
+</div>

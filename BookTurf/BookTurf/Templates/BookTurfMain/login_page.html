@@ -1,0 +1,40 @@
+{% extends 'BookTurfMain/BookTurfBase.html' %}
+{% load static %}
+{% block head %}
+    <title>Book Turfs Login</title>
+    <link rel="stylesheet" href="{% static '/BookTurfMain/pages/Login-page/login.css' %}" />
+    {% endblock head %}
+{% block body %}
+{% if user.is_authenticated %}
+You are already logged in
+{% else %}
+    <div class="container">
+      <h2>Login to Book Turfs</h2>
+
+      <button class="button-google">
+        <img
+          src="{% static '/BookTurfMain/assets/google-logo.png' %}"
+          style="height: 16px; width: 16px; margin-right: 8px; margin-top: 4px"
+        />
+        Login with Google
+      </button>
+
+      <hr class="divider" />
+      <div class="or">or</div>
+      <hr class="divider" />
+
+      <form class="login-form" method="post" action='authenticate/'>
+        {% csrf_token %}
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+        <input type="submit" value="Login" />
+      </form>
+      <p class="already-member">
+        Don't have an Account? <a href="/BookTurf/BookTurfMain/sign_up">Sign Up</a>
+      </p>
+    </div>
+{% endif %}
+{% endblock body %}
+

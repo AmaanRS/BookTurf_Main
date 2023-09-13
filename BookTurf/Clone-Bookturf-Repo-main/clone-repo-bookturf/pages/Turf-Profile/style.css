@@ -1,0 +1,510 @@
+/* Reset some default styles 
+color: #F3694E #196670  #dde2e9
+#474747*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/*Navigation bar*/
+.navbar {
+  background-color: #dde2e9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0 20px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.left a {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.left a i {
+  margin-right: 5px;
+}
+
+.right button {
+  background-color: #dde2e9;
+  color: #333;
+  border: none;
+  padding: 8px;
+  padding-top: 11px;
+  padding-right: 0px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Adjust the Font Awesome icon size */
+.right button i {
+  font-size: 15px;
+}
+
+/*Carsoul*/
+
+.slider-wrapper {
+  position: relative;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.slider {
+  display: flex;
+  aspect-ratio: 16 / 9;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  -ms-overflow-style: none; /* Hide scrollbar IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider img {
+  flex: 1 0 100%;
+  scroll-snap-align: start;
+  object-fit: cover;
+}
+
+.slider-nav {
+  display: flex;
+  column-gap: 1rem;
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.slider-nav a {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.75;
+  transition: opacity ease 250ms;
+}
+
+.slider-nav a:hover {
+  opacity: 1;
+}
+
+/*Bottom-Bar*/
+.booking-bar {
+  background-color: #dde2ed;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  z-index: 1;
+}
+
+.booking-bar .left-section {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-gap: 0px;
+}
+
+.booking-bar .price-block {
+  background-color: #dde2ed;
+  /*padding: 10px;
+  margin-left: 1rem;
+  border-radius: 12px;*/
+}
+
+.booking-bar .price {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 20px 0px 20px;
+}
+
+.booking-bar .date {
+  font-size: 12px;
+  padding: 0px 20px 5px 20px;
+}
+
+.booking-bar .right-section .reserve-btn {
+  background-color: #196670;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.reserve-btn {
+  margin-right: 0.5rem;
+}
+.reserve-btn:hover {
+  background-color: #1b727d;
+}
+/*turf-detail*/
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.turf-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+.turf-name {
+  margin-right: 10px;
+  padding-left: 15px;
+}
+.turf-ratings {
+  display: flex;
+  align-items: center;
+  padding-right: 15px;
+}
+.star-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("/assets/star.png") no-repeat center center;
+  background-size: cover;
+  margin-right: 5px;
+}
+
+.turf-address {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  padding-right: 10px;
+  width: 100%;
+  padding-bottom: 5px;
+}
+.turf-address p {
+  font-weight: lighter;
+  font-size: 12px;
+  padding-left: 10px;
+}
+.turf-address i {
+  padding-top: 2px;
+  padding-left: 22px;
+  color: #196670;
+}
+.facilities {
+  padding-left: 22px;
+  padding-top: 10px;
+  font-weight: bold;
+  color: #222222;
+}
+
+.facilities-block {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px; /* Adjust the width as needed */
+  margin: 0 auto;
+  padding: 10px 15px;
+}
+
+.facility {
+  text-align: center;
+  background-color: #dde2e9;
+  font-size: small;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.facility i {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.facility img {
+  height: 20px;
+  width: 20px;
+}
+.paras {
+  font-size: small;
+  padding-left: 21px;
+  padding-right: 15px;
+  padding-top: 8px;
+}
+/*date*/
+.wrapper {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+}
+.wrapper header {
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+header .icons {
+  display: flex;
+}
+header .icons span {
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+.icons span:last-child {
+  margin-right: -10px;
+}
+header .icons span:hover {
+  background: #f2f2f2;
+}
+header .current-date {
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+.calendar {
+  padding: 20px;
+}
+.calendar ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+.calendar .days {
+  margin-bottom: 20px;
+}
+.calendar li {
+  color: #333;
+  width: calc(100% / 7);
+  font-size: 1.07rem;
+}
+.calendar .weeks li {
+  font-weight: 500;
+  cursor: default;
+}
+.calendar .days li {
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  margin-top: 30px;
+}
+.days li.inactive {
+  color: #aaa;
+}
+.days li.active {
+  color: #fff;
+}
+.days li::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.days li.active::before {
+  background: #196670;
+}
+.days li:not(.active):hover::before {
+  background: #f2f2f2;
+}
+
+/*time*/
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 5px;
+}
+.timegrid {
+  padding: 10px;
+}
+.time {
+  padding: 10px;
+  font-size: smaller;
+  border-radius: 12px;
+}
+.time:hover {
+  background-color: #196670;
+  color: white;
+}
+.time-slot {
+  font-weight: bold;
+  grid-row: 1;
+}
+.time {
+  text-align: center;
+  background-color: #dde2ed;
+}
+.time-heading {
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+.divider {
+  margin: 10px 20px;
+}
+/*host profile*/
+
+.host {
+  display: flex;
+  flex-direction: column; /* Set flex layout to column */
+  align-items: center;
+  /* Optional background color for better visibility */
+  padding: 10px; /* Optional padding for better spacing */
+}
+.host-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: -5px;
+}
+
+.host-content h2 {
+  margin-left: 22px;
+}
+
+.host-content img {
+  margin: 20px;
+
+  width: 40px;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  background-color: #196670;
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px;
+}
+.contact-btn:hover {
+  background-color: white;
+  border: #196670 solid 2px;
+  color: #196670;
+}
+.contact-btn img {
+  width: 30px;
+  margin-right: 10px;
+}
+/*
+.host-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: -5px;
+}
+
+.host-content h2 {
+  margin-left: 22px;
+}
+
+.host-content img {
+  margin: 20px;
+
+  width: 40px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  background-color: #196670;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+button img {
+  width: 30px;
+  margin-right: 10px;
+}
+*/
+
+/*review block*/
+.Review-block {
+  display: flex;
+  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.image-container {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  padding-top: 6px;
+}
+
+.image-container img {
+  max-width: 35px;
+  margin-left: 22px;
+}
+
+.review-heading {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.review-heading p {
+  font-size: small;
+}
+.review-para {
+  padding: 10px 22px;
+}
+.review-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding-right: 8px;
+}
+.read-more-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+}
+.read-more {
+  cursor: pointer;
+  text-decoration: underline;
+  color: black;
+  padding-bottom: 20px;
+}
+
+.hidden-reviews {
+  display: none;
+  /* Additional styles for the hidden reviews if needed */
+}

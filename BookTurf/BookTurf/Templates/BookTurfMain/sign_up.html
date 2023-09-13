@@ -1,0 +1,54 @@
+{% extends 'BookTurfMain/BookTurfBase.html' %}
+{% load static %}
+{% block head %}
+    <title>Book Turfs Login</title>
+    <link rel="stylesheet" href="{% static '/BookTurfMain/pages/Login-page/sign_up.css' %}" />
+    <style></style>
+    {% endblock head %}
+
+{% block body %}
+    <div class="container">
+      <!--<h2>Login to Book Turfs</h2>-->
+
+      <button class="button-google">
+        <img
+          src="{% static '/BookTurfMain/assets/google-logo.png' %}"
+          alt="Google Logo"
+          style="height: 16px; width: 16px; margin-right: 8px"
+        />
+        Sign Up with Google
+      </button>
+
+      <hr class="divider" />
+      <div class="or">or</div>
+      <hr class="divider" />
+      <form class="login-form" action="authenticate/" method="post">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required />
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" name="phone" id="phone" required />
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+
+        <input type="checkbox" name="terms" id="terms" required />
+        <span class="terms-text"
+          >Creating an account means you’re okay with our Terms of Service,
+          Privacy Policy</span
+        >
+        <input type="submit" value="Create Account" />
+      </form>
+      <p class="already-member">
+        Already a member? <a href="/BookTurf/BookTurfMain/login_page">Log in</a>
+      </p>
+      <p class="host-login">
+        If you are a host <a href="#">Log in here</a>
+      </p>
+    </div>
+{% endblock body %}
+

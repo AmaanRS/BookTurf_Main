@@ -1,0 +1,564 @@
+/* Import Google font - Poppins */
+/* Reset some default styles 
+      color: #F3694E #196670  #dde2e9
+      #474747*/
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: center;
+  min-height: 100vh;
+  background: #196670;
+}
+
+.search-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-button {
+  text-align: right;
+}
+
+.close-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #dde2e9;
+  color: #fff;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.close-icon:hover {
+  background-color: #999;
+}
+
+.search-heading {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+
+  margin-bottom: 20px;
+}
+
+.search-block {
+  cursor: pointer;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 12px;
+  padding-left: 20px;
+  box-shadow: -3px 8px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search-block .block-heading {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2b2b2b;
+}
+
+.search-block .content {
+  display: none;
+  margin-top: 10px;
+}
+
+.search-block.show .content {
+  display: block;
+}
+
+.search-block .content {
+  padding: 20px 30px;
+  padding-left: 10px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.search-block .content label {
+  display: flex;
+  height: 40px;
+  width: 100%;
+  align-items: center;
+  border: 1px solid lightgrey;
+  border-radius: 50px;
+  margin: 5px 0;
+  padding-left: 20px;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+#cricket:checked ~ .cricket,
+#football:checked ~ .football,
+#any:checked ~ .any {
+  background: #196670;
+  border-color: #196670;
+}
+
+.search-block .content label .dot {
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#cricket:checked ~ .cricket .dot,
+#football:checked ~ .football .dot,
+#any:checked ~ .any .dot {
+  background: #fff;
+}
+
+.search-block .content label .dot::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+.search-block button {
+  background-color: white;
+  border: none;
+}
+
+#cricket:checked ~ .cricket .dot::before,
+#football:checked ~ .football .dot::before,
+#any:checked ~ .any .dot::before {
+  background: #196670;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.search-block .content label .text {
+  color: #333;
+  font-size: 18px;
+  font-weight: 400;
+  padding-left: 10px;
+  transition: color 0.3s ease;
+}
+
+#cricket:checked ~ .cricket .text,
+#football:checked ~ .football .text,
+#any:checked ~ .any .text {
+  color: #fff;
+}
+
+.search-block .content input[type="radio"] {
+  display: none;
+}
+
+/*calendar*/
+.wrapper {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: -3px 8px 8px rgba(0, 0, 0, 0.15);
+  height: 400px;
+}
+
+.wrapper header {
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+header .icons {
+  display: flex;
+}
+header .icons span {
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+.icons span:last-child {
+  margin-right: -10px;
+}
+header .icons span:hover {
+  background: #f2f2f2;
+}
+header .current-date {
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+.calendar {
+  padding: 20px;
+}
+.calendar ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+.calendar .days {
+  margin-bottom: 20px;
+}
+.calendar li {
+  color: #333;
+  width: calc(100% / 7);
+  font-size: 1.07rem;
+}
+.calendar .weeks li {
+  font-weight: 500;
+  cursor: default;
+}
+.calendar .days li {
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  margin-top: 30px;
+}
+.days li.inactive {
+  color: #aaa;
+}
+.days li.active {
+  color: #fff;
+}
+.days li::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.days li.active::before {
+  background: #196670;
+}
+.days li:not(.active):hover::before {
+  background: #f2f2f2;
+}
+
+/*time-slot*/
+
+.time-slots {
+  margin-top: 15px;
+  padding: 10px;
+  position: relative;
+  overflow-x: hidden;
+  max-width: 1000px;
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: -3px 8px 8px rgba(0, 0, 0, 0.15);
+}
+.time-slots .icon {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 120px;
+  display: flex;
+  align-items: center;
+}
+.icon:first-child {
+  left: 0;
+  display: none;
+  background: linear-gradient(90deg, #fff 70%, transparent);
+  width: 4rem;
+}
+.icon:last-child {
+  right: 0;
+  justify-content: flex-end;
+  background: linear-gradient(-90deg, #fff 70%, transparent);
+  width: 4rem;
+}
+.icon i {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 25px;
+  border-radius: 50%;
+  color: #767676;
+}
+.icon i:hover {
+  background: #efedfb;
+}
+.icon:first-child i {
+  margin-left: 15px;
+}
+.icon:last-child i {
+  margin-right: 15px;
+}
+.time-slots .tabs-box {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.tabs-box.dragging {
+  scroll-behavior: auto;
+  cursor: grab;
+}
+.tabs-box .tab {
+  cursor: pointer;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  background: #f5f4fd;
+  padding: 13px 20px;
+  border-radius: 30px;
+  border: 1px solid #d8d5f2;
+}
+.tabs-box .tab:hover {
+  background: #efedfb;
+}
+.tabs-box.dragging .tab {
+  user-select: none;
+  pointer-events: none;
+}
+.tabs-box .tab.active {
+  color: #fff;
+  background: #196670;
+  border-color: transparent;
+}
+
+/*search button*/
+.search-button-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.search-button-container button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #196670;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.search-button-container button:hover {
+  background-color: #1c7381;
+}
+/*Location search bar
+.search-blocks {
+  cursor: pointer;
+  margin-bottom: 20px;
+
+  border-radius: 12px;
+
+  box-shadow: -3px 8px 8px rgba(0, 0, 0, 0.15);
+}
+.locsearch-container {
+  background-color: var(--md-dark-color);
+  padding: 4px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.search-element {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.search-element h3 {
+  align-self: center;
+  margin-right: 1rem;
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.search-element .search-input {
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+  color: var(--light-dark-color);
+  width: 300px;
+}
+/*
+.search-list {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  max-height: 500px;
+  overflow-y: scroll;
+  z-index: 10;
+  background-color: white;
+}
+
+.search-list .search-list-item {
+  background-color: var(--light-dark-color);
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--dark-color);
+  width: calc(350px - 8px);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.search-list .search-list-item:hover {
+  background-color: #1f1f1f;
+}
+
+.search-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.search-item-thumbnail img {
+  width: 40px;
+  margin-right: 1rem;
+}
+
+.search-item-info h4 {
+  font-weight: 600;
+  font-size: 1rem;
+  color: black;
+}
+
+.search-item-info p {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+@media (max-width: 450px) {
+  .logo p {
+    font-size: 1.4rem;
+  }
+  .search-element .form-control {
+    width: 110%;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+  }
+  .search-element h3 {
+    font-size: 1.4rem;
+  }
+  .search-list {
+    width: 90%;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+  }
+  .search-list .search-list-item {
+    width: 100%;
+  }
+  .movie-misc-info {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .movie-misc-info li:nth-child(2) {
+    margin: 0.8rem 0;
+  }
+}
+
+@media (min-width: 800px) {
+  .search-element {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+  .search-element h3 {
+    margin-bottom: 0;
+  }
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .movie-info {
+    text-align: left;
+    padding-top: 0;
+  }
+  .movie-info .movie-misc-info {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+  .movie-info .plot {
+    margin-left: 0;
+  }
+  .movie-info .writer {
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+*/
+.search-blocks {
+  cursor: pointer;
+  margin-bottom: 20px;
+  height: 50px;
+  border-radius: 12px;
+
+  box-shadow: -3px 8px 8px rgba(0, 0, 0, 0.15);
+}
+.searchs-container {
+  width: 300px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border: none;
+}
+
+.search-list {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 1;
+  display: none;
+}
+
+.search-list-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-list-item:hover {
+  background-color: #f5f5f5;
+}

@@ -1,0 +1,91 @@
+{% extends 'BookTurfMain/BookTurfBase.html' %}
+{% load static %}
+
+{% block head %}
+<title>Add Profile</title>
+{% endblock head %}
+
+
+
+{% block body %}
+{% if request.session.id == 'AdminAuthenticated' %}
+<form method="post" action="createTurf_Profile/" enctype="multipart/form-data">
+        {% csrf_token %}
+<!--<label>turf_id</label>-->
+<!--<input name="turf_id" id="turf_id" required>-->
+<!--<br>-->
+
+<label>turf_name</label>
+<input name="turf_name" id="turf_name"required>
+<br>
+
+<label>turf_rating</label>
+<input name="turf_rating" id="turf_rating"required>
+<br>
+
+<label>turf_category_1</label>
+<input name="turf_category_1" id="turf_category_1"required>
+<br>
+
+<label>turf_category_2</label>
+<input name="turf_category_2" id="turf_category_2">
+<br>
+
+<label>turf_category_3</label>
+<input name="turf_category_3" id="turf_category_3">
+<br>
+
+<label>turf_category_4</label>
+<input name="turf_category_4" id="turf_category_4">
+<br>
+
+<label>turf_description</label>
+<input name="turf_description" id="turf_description"required>
+<br>
+
+<label>turf_rules_regulations</label>
+<input name="turf_rules_regulations" id="turf_rules_regulations"required>
+<br>
+
+<label>turf_address</label>
+<input name="turf_address" id="turf_address"required>
+<br>
+
+<label>turf_ownerContact_number</label>
+<input name="turf_ownerContact_number" id="turf_ownerContact_number"required>
+<br>
+
+<!--<label>turf_reviews</label>-->
+<!--<input name="turf_reviews" id="turf_reviews"required>-->
+<!--<br>-->
+
+<label>turf_host_name</label>
+<input name="turf_host_name" id="turf_host_name"required>
+<br>
+
+<label>turf_map</label>
+<input name="turf_map" id="turf_map"required>
+<br>
+
+<label>turf_price</label>
+<input name="turf_price" id="turf_price"required>
+<br>
+
+<label>turf_picture</label>
+<input type='file' name="turf_picture" id="turf_picture" accept="image/png" multiple required>
+<br>
+        <button>Create Turf</button>
+</form>
+
+{% else %}
+<form class="login-form" method="post" action=''>
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+        <input type="submit" value="Login" />
+</form>
+{% endif %}
+
+{% endblock body %}

@@ -1,0 +1,252 @@
+{% extends 'BookTurfMain/BookTurfBase.html' %}
+{% load static %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="{% static '/BookTurfMain/pages/Turf-Profile/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="{% static 'BookTurfMain/pages/Turf-Profile/script.js' %}" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <title>Turf Profile </title>
+    {% endblock head %}
+    {% block body %}
+    <nav class="navbar">
+      <div class="left">
+        <a href="/BookTurf/BookTurfMain/index"><i class="fas fa-angle-left"></i> Home</a>
+      </div>
+      <div class="right">
+        <button><i class="fas fa-share"></i></button>
+      </div>
+    </nav>
+{% for profile in profiles %}
+    <section class="container">
+      <div class="slider-wrapper">
+          {% if pic0 and pic1 and pic2 %}
+        <div class="slider">
+          <img id="slide-1" src={{pic0.turf_picture.url}} alt="Turf Image" />
+          <img id="slide-2" src={{pic1.turf_picture.url}} alt="Turf Image" />
+          <img id="slide-3" src={{pic2.turf_picture.url}} alt="Turf Image" />
+        </div>
+          {% endif %}
+        <div class="slider-nav">
+          <a href="#slide-1"></a>
+          <a href="#slide-2"></a>
+          <a href="#slide-3"></a>
+        </div>
+      </div>
+    </section>
+    <main>
+      <div class="turf-details">
+        <h2 class="turf-name">{{profile.turf_name}}</h2>
+        <div class="turf-ratings">
+          <div class="star-icon"></div>
+          <p>{{profile.turf_rating}}</p>
+        </div>
+      </div>
+    </main>
+    <div class="turf-address">
+      <i class="fas fa-map-marker-alt location-icon"></i>
+      <p class="turf-address">
+       {{profile.turf_address}}
+      </p>
+    </div>
+    <hr class="divider" />
+    <h3 class="facilities">Amenities</h3>
+    <div class="facilities-block">
+      <div class="facility">
+        <img src="{% static '/BookTurfMain/assets/football (1).png' %}" alt="football icon" />
+        <p>{{profile.turf_category_1}}</p>
+      </div>
+      <div class="facility">
+        <img src="{% static '/BookTurfMain/assets/parking.png' %}" alt="football icon" />
+        <p>{{profile.turf_category_2}}</p>
+      </div>
+      <div class="facility">
+        <img src="{% static '/BookTurfMain/assets/light.png' %}" alt="football icon" />
+        <p>{{profile.turf_category_3}}</p>
+      </div>
+
+      <div class="facility">
+        <img src="{% static '/BookTurfMain/assets/team.png' %}" alt="football icon" />
+        <p>{{profile.turf_category_4}}</p>
+      </div>
+    </div>
+    <hr class="divider" />
+    <h3 class="facilities">Description</h3>
+    <p class="paras">
+      {{profile.turf_description}}
+    </p>
+    <hr class="divider" />
+    <h3 class="facilities">Rules & Regulation</h3>
+    <p class="paras">
+           {{profile.turf_rules_regulations}}
+    </p>
+    <hr class="divider" />
+    <div class="date">
+      <div class="wrapper">
+        <header>
+          <p class="current-date"></p>
+          <div class="icons">
+            <span id="prev" class="material-symbols-rounded">chevron_left</span>
+            <span id="next" class="material-symbols-rounded"
+              >chevron_right</span
+            >
+          </div>
+        </header>
+        <div class="calendar">
+          <ul class="weeks">
+            <li>Sun</li>
+            <li>Mon</li>
+            <li>Tue</li>
+            <li>Wed</li>
+            <li>Thu</li>
+            <li>Fri</li>
+            <li>Sat</li>
+          </ul>
+          <ul class="days"></ul>
+        </div>
+      </div>
+    </div>
+    <hr class="divider" />
+    <h3 class="time-heading">Available Timeslots</h3>
+    <div class="timegrid">
+      <div class="grid-container">
+        <div class="time">5-6 am</div>
+        <div class="time">6-7 am</div>
+        <div class="time">7-8 am</div>
+        <div class="time">8-9 am</div>
+        <div class="time">9-10 am</div>
+        <div class="time">10-11 am</div>
+        <div class="time">11-12 pm</div>
+        <div class="time">12-1 pm</div>
+        <div class="time">1-2 pm</div>
+        <div class="time">2-3 pm</div>
+        <div class="time">3-4 pm</div>
+        <div class="time">4-5 pm</div>
+        <div class="time">5-6 pm</div>
+        <div class="time">6-7 pm</div>
+        <div class="time">7-8 pm</div>
+        <div class="time">8-9 pm</div>
+        <div class="time">9-10 pm</div>
+        <div class="time">10-11 pm</div>
+        <div class="time">11-12 am</div>
+        <div class="time">12-1 am</div>
+        <div class="time">1-2 am</div>
+        <div class="time">2-3 am</div>
+        <div class="time">3-4 am</div>
+        <div class="time">4-5 am</div>
+      </div>
+    </div>
+    <hr class="divider" />
+    <div class="host">
+      <div class="host-content">
+        <h2>{{profile.turf_host_name}}</h2>
+        <img src="{% static '/BookTurfMain/assets/hostuser (1).png' %}" alt="host profile" />
+      </div>
+      <button class="contact-btn">
+        <img src="{% static '/BookTurfMain/assets/whatsapp.png' %}" alt="whatsapp logo" />
+          {{profile.turf_ownerContact_number}}
+      </button>
+    </div>
+    <hr class="divider" />
+    <h3 class="time-heading">On map</h3>
+<!-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d961.6646587988762!2d72.8683730710571!3d19.269395113843196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b196bd587c83%3A0x3523bca1031c7782!2sLush%20-%20ISF%20Turfs%20Shrishti!5e1!3m2!1sen!2sin!4v1690474097314!5m2!1sen!2sin"-->
+    <iframe src={{profile.turf_map}}
+      width="350"
+      height="350"
+      style="border: 0; border-radius: 12px; margin: 20px"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+    <hr class="divider" />
+    <h3 class="time-heading">Reviews</h3>
+    <div class="review-sLush Turf, Mira Roadection">
+      <div class="Review-block">
+        <div class="image-container">
+          <img src="{% static '/BookTurfMain/assets/hostuser (1).png' %}" alt="host profile" />
+        </div>
+        <div class="review-content">
+          <div class="review-heading">
+            <div class="user-name">Abdul Wase</div>
+            <p>July 2023</p>
+          </div>
+          <div class="turf-ratings">
+            <div class="star-icon"></div>
+            <p>4.8</p>
+          </div>
+        </div>
+      </div>
+      <div class="review-para">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere aliquam
+        officia rerum laboriosam incidunt fugit tenetur minus maxime fugiat
+        expedita, asperiores quis nisi explicabo! Obcaecati consequuntur ducimus
+        recusandae ex corrupti.
+      </div>
+    </div>
+    <div class="read-more-container">
+      <div class="read-more" onclick="toggleReviews()">Read more</div>
+    </div>
+    <div class="hidden-reviews">
+      <div class="review-section">
+        <div class="Review-block">
+          <div class="image-container">
+            <img src="{% static '/BookTurfMain/assets/hostuser (1).png' %}" alt="host profile" />
+          </div>
+          <div class="review-content">
+            <div class="review-heading">
+              <div class="user-name">Abdul Wase</div>
+              <p>July 2023</p>
+            </div>
+            <div class="turf-ratings">
+              <div class="star-icon"></div>
+              <p>4.8</p>
+            </div>
+          </div>
+        </div>
+        <div class="review-para">
+            {{profile.turf_reviews}}
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="booking-bar">
+      <div class="left-section">
+        <div class="price-block">
+          <h4 class="price">₹800 per person</h4>
+          <p class="date">July 15</p>
+        </div>
+      </div>
+      <div class="right-section">
+        <button class="reserve-btn">Reserve</button>
+      </div>
+    </div>
+{% endfor %}
+    <script>
+      function toggleReviews() {
+        const hiddenReviews = document.querySelector(".hidden-reviews");
+        const readMore = document.querySelector(".read-more");
+
+        if (hiddenReviews.style.display === "none") {
+          hiddenReviews.style.display = "block";
+          readMore.textContent = "Read less";
+        } else {
+          hiddenReviews.style.display = "none";
+          readMore.textContent = "Read more";
+        }
+      }
+    </script>
+    {% endblock body %}
+
