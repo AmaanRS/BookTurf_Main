@@ -108,7 +108,7 @@ nav {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background: url("/static/BookTurfMain/assets/star.png") no-repeat center center;
+  background: url("/static/BookTurfMain/assets/star.png") no-repeat center center ;
   background-size: cover;
   margin-right: 3px;
   margin-bottom: 1px;
@@ -194,13 +194,16 @@ footer {
   border-bottom: 1px solid #ccc;
   flex-wrap: wrap;
   flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
 }
 .turf-profile:first-child {
   padding-top: 110px;
 }
 
 .turf-image {
-  flex: 0 0 10rem; /* Adjust the width of the image column as needed */
+  flex: 0 0 10rem;
+  /* Adjust the width of the image column as needed */
 }
 
 .turf-image img {
