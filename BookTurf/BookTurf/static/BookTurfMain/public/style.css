@@ -104,11 +104,15 @@ nav {
   display: flex;
   align-items: center;
 }
+
+.turf-ratings p {
+  margin-bottom: 0px;
+}
 .star-icon {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background: url("/static/BookTurfMain/assets/star.png") no-repeat center center ;
+  background: url("/static/BookTurfMain/assets/star.png") no-repeat center center;
   background-size: cover;
   margin-right: 3px;
   margin-bottom: 1px;

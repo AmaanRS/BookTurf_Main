@@ -20,12 +20,13 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  padding: 0 20px;
 }
 
 .left {
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .left a {
@@ -49,6 +50,10 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
+.right {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
 
 /* Adjust the Font Awesome icon size */
 .right button i {
@@ -56,7 +61,7 @@ body {
 }
 
 /*Carsoul*/
-
+/* 
 .slider-wrapper {
   position: relative;
   max-width: 48rem;
@@ -70,8 +75,8 @@ body {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
 
-  -ms-overflow-style: none; /* Hide scrollbar IE and Edge */
-  scrollbar-width: none; /* Hide scrollbar Firefox */
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
 }
 
 .slider::-webkit-scrollbar {
@@ -105,7 +110,7 @@ body {
 
 .slider-nav a:hover {
   opacity: 1;
-}
+} */
 
 /*Bottom-Bar*/
 .booking-bar {
@@ -119,6 +124,7 @@ body {
   align-items: center;
   padding: 10px;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 .booking-bar .left-section {
@@ -133,7 +139,9 @@ body {
   margin-left: 1rem;
   border-radius: 12px;*/
 }
-
+.price-block p {
+  margin-bottom: 0;
+}
 .booking-bar .price {
   font-size: 16px;
   font-weight: bold;
@@ -160,6 +168,16 @@ body {
 .reserve-btn:hover {
   background-color: #1b727d;
 }
+.reserve-btn a {
+  /* Add any styles you want to apply when the button is clicked (optional) */
+  text-decoration: none;
+  color: #fff;
+}
+.reserve-btn a:active {
+  /* Add any styles you want to apply when the button is clicked (optional) */
+  text-decoration: none;
+  color: #fff;
+}
 /*turf-detail*/
 main {
   display: flex;
@@ -184,11 +202,14 @@ main {
   align-items: center;
   padding-right: 15px;
 }
+.turf-ratings p {
+  margin-bottom: 0px;
+}
 .star-icon {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background: url("/Frontend/src/assets/star.png") no-repeat center center;
+  background: url("/static/BookTurfMain/assets/star.png") no-repeat center center;
   background-size: cover;
   margin-right: 5px;
 }
@@ -233,7 +254,9 @@ main {
   padding: 10px;
   border-radius: 12px;
 }
-
+.facility p {
+  margin-bottom: 0px;
+}
 .facility i {
   font-size: 15px;
   margin-bottom: 10px;
@@ -253,7 +276,9 @@ main {
   width: 100%;
   background: #fff;
   border-radius: 10px;
+  height: 400px;
 }
+/* 
 .wrapper header {
   display: flex;
   align-items: center;
@@ -334,7 +359,7 @@ header .current-date {
 }
 .days li:not(.active):hover::before {
   background: #f2f2f2;
-}
+} */
 
 /*time*/
 .grid-container {
@@ -345,27 +370,49 @@ header .current-date {
 .timegrid {
   padding: 10px;
 }
-.time {
+.time-slot {
   padding: 10px;
   font-size: smaller;
   border-radius: 12px;
 }
-.time:hover {
+.time-slot:hover {
   background-color: #196670;
   color: white;
 }
+/* 
 .time-slot {
   font-weight: bold;
   grid-row: 1;
-}
-.time {
+} */
+
+.time-slot {
   text-align: center;
   background-color: #dde2ed;
 }
+.time-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+.time {
+  font-weight: bold;
+}
+.perhourprice {
+  font-size: 12px;
+  padding-top: 5px;
+}
+
 .time-heading {
   font-weight: bold;
   padding: 10px;
   text-align: center;
+}
+.selected {
+  background-color: #196670; /* Set the background color for the active time slot */
+  color: white; /* Set the text color for the active time slot */
 }
 .divider {
   margin: 10px 20px;
@@ -508,3 +555,68 @@ button img {
   display: none;
   /* Additional styles for the hidden reviews if needed */
 }
+
+/* image slider */
+.image-slider {
+  min-height: 200px;
+  height: 30vh;
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: 0.3s;
+  overflow: hidden;
+  width: 400px;
+  height: 30vh;
+  margin: 0 auto;
+}
+.arrow-left,
+.arrow-right {
+  background: #fff;
+  position: absolute;
+  top: 40%;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.arrow-left:hover,
+.arrow-right:hover {
+  background: #196670;
+  color: #fff;
+}
+.arrow-left {
+  left: 0.5em;
+  z-index: 1;
+}
+.arrow-right {
+  right: 0.5em;
+}
+.slider {
+  display: flex;
+  transition: transform 0.3s ease; /* Add a smooth slide animation */
+}
+
+.slider img {
+  width: 100%;
+  height: auto;
+}
+/*
+.image-fade {
+  animation: imgFade 0.5s ease-in-out;
+}
+
+@keyframes imgFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+} */

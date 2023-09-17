@@ -3,12 +3,13 @@
 
 {% block head %}
 
-    <link rel="stylesheet" href="{% static '/BookTurfMain/pages/Turf-Profile/style.css' %}" />
+    <link rel="stylesheet" href="{% static '/BookTurfMain/pages/Turf-Profile/tp_style.css' %}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <script src="{% static 'BookTurfMain/pages/Turf-Profile/script.js' %}" defer></script>
+    <script src="{% static 'BookTurfMain/pages/Turf-Profile/tp_script.js' %}" defer></script>
+    <script src="{% static 'BookTurfMain/pages/Turf-Profile/dates.js' %}" defer></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -25,7 +26,7 @@
       </div>
     </nav>
 {% for profile in profiles %}
-    <section class="container">
+    {% comment %} <section class="container">
       <div class="slider-wrapper">
           {% if pic0 and pic1 and pic2 %}
         <div class="slider">
@@ -39,6 +40,20 @@
           <a href="#slide-2"></a>
           <a href="#slide-3"></a>
         </div>
+      </div>
+    </section> {% endcomment %}
+    {% comment %} New image slider {% endcomment %}
+    <section class="image-slider">
+      <div class="arrow-left">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="slider">
+        <img src="{% static '/BookTurfMain/assets/hostuser (1).png' %}" alt="Image 1">
+        <img src="{% static '/BookTurfMain/assets/whatsapp.png' %}" alt="Image 2">
+        <img src="{% static '/BookTurfMain/assets/light.png' %}" alt="Image 3">
+    </div>
+      <div class="arrow-right">
+        <i class="fas fa-arrow-right"></i>
       </div>
     </section>
     <main>
@@ -88,59 +103,110 @@
            {{profile.turf_rules_regulations}}
     </p>
     <hr class="divider" />
-    <div class="date">
-      <div class="wrapper">
-        <header>
-          <p class="current-date"></p>
-          <div class="icons">
-            <span id="prev" class="material-symbols-rounded">chevron_left</span>
-            <span id="next" class="material-symbols-rounded"
-              >chevron_right</span
-            >
-          </div>
-        </header>
-        <div class="calendar">
-          <ul class="weeks">
-            <li>Sun</li>
-            <li>Mon</li>
-            <li>Tue</li>
-            <li>Wed</li>
-            <li>Thu</li>
-            <li>Fri</li>
-            <li>Sat</li>
-          </ul>
-          <ul class="days"></ul>
-        </div>
+    <div class="wrapper">
+       <div class="wrapper-flex"> <date-picker format="DDD MMMM DD, YYYY"></date-picker></div>
       </div>
     </div>
     <hr class="divider" />
     <h3 class="time-heading">Available Timeslots</h3>
     <div class="timegrid">
       <div class="grid-container">
-        <div class="time">5-6 am</div>
-        <div class="time">6-7 am</div>
-        <div class="time">7-8 am</div>
-        <div class="time">8-9 am</div>
-        <div class="time">9-10 am</div>
-        <div class="time">10-11 am</div>
-        <div class="time">11-12 pm</div>
-        <div class="time">12-1 pm</div>
-        <div class="time">1-2 pm</div>
-        <div class="time">2-3 pm</div>
-        <div class="time">3-4 pm</div>
-        <div class="time">4-5 pm</div>
-        <div class="time">5-6 pm</div>
-        <div class="time">6-7 pm</div>
-        <div class="time">7-8 pm</div>
-        <div class="time">8-9 pm</div>
-        <div class="time">9-10 pm</div>
-        <div class="time">10-11 pm</div>
-        <div class="time">11-12 am</div>
-        <div class="time">12-1 am</div>
-        <div class="time">1-2 am</div>
-        <div class="time">2-3 am</div>
-        <div class="time">3-4 am</div>
-        <div class="time">4-5 am</div>
+        <div class="time-slot">
+          <div class="time">5-6 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">6-7 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">7-8 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">8-9 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">9-10 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">10-11 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">11-12 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">12-1 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">1-2 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">2-3 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">3-4 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">4-5 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">5-6 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">6-7 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">7-8 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">8-9 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">9-10 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">10-11 pm</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">11-12 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">12-1 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">1-2 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">2-3 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">3-4 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">4-5 am</div>
+          <div class="perhourprice">&#8377;1500</div>
+        </div>
       </div>
     </div>
     <hr class="divider" />
