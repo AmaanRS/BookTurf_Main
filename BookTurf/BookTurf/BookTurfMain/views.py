@@ -178,6 +178,12 @@ def handle_ajax_request(request):
         selected_time_slots = request.POST.get("selectedTimeSlots")
 
         # Process the form data or perform any necessary actions here
+        # Store the data in the session
+        request.session['selected_sport'] = selected_sport
+        request.session['search_input'] = search_input
+        request.session['date_toggle_value'] = date_toggle_value
+        request.session['selected_time_slots'] = selected_time_slots
+
 
         # Print the received data (you can replace this with your own logic)
         print("Selected Sport:", selected_sport)
@@ -191,9 +197,28 @@ def handle_ajax_request(request):
                            f"Selected Time Slot: {selected_time_slots}\n"
 
         # Return an HTTP response with the data
-        return HttpResponse(response_content, content_type="text/plain")
+        # return render(request, 'BookTurfMain/index.html')
+        return redirect("another_view")
+        
+
+        # return HttpResponse(response_content, content_type="text/plain")
 
     return HttpResponse("Invalid request method", content_type="text/plain")
 
-        
+
+def another_view(request):
+    # Retrieve the data from the session
+    selected_sport = request.session.get('selected_sport')
+    search_input = request.session.get('search_input')
+    date_toggle_value = request.session.get('date_toggle_value')
+    selected_time_slots = request.session.get('selected_time_slots')
+
+    # Use the retrieved data to render a response or perform actions
+
+    # ... other processing ...
+
+    # Return to the index page or render a different template
+    return redirect("index")
+
+
 

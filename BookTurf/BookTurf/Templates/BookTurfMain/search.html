@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+{% extends 'BookTurfMain/BookTurfBase.html' %} 
 {% load static %}
-<html lang="en" dir="ltr">
-  <head>
+{% block head %}
+  
     <meta charset="utf-8" />
     <title>Search</title>
     <link
@@ -27,8 +27,8 @@
     ></script>
     <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
-  <body>
+    {% endblock head %} 
+    {% block body %}
     <div class="search-container">
       <div class="close-button">
         <div class="close-icon" onclick="closeSearchPage()">&times;</div>
@@ -237,128 +237,66 @@
       document.addEventListener("mouseup", dragStop);
     </script>
 
-    {% comment %}
-    <!-- <script>
-      // Function to handle form submission
-      document
-        .getElementById("myForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent the form from submitting the traditional way
-
-          // Capture form values
-          const selectedSport = document.querySelector(
-            'input[name="sport"]:checked'
-          ).value;
-          const searchInput = document.getElementById("search-input").value;
-          const datePickerValue = document.querySelector(".date-toggle").value; // Updated selector for date input
-          const selectedTimeSlots = document
-            .querySelector(".time-slots .tab.active")
-            .getAttribute("value");
-
-          // Display values in the console
-          console.log("Selected Sport:", selectedSport);
-          console.log("Search Input:", searchInput);
-          console.log("Date Picker Value:", datePickerValue);
-          console.log("Selected Time Slot:", selectedTimeSlots);
-
-          // You can also capture and log the other values if needed
-
-          // Now you can perform any additional processing or actions here
-
-          // For demonstration purposes, we can reset the form fields after submission
-          this.reset();
-        });
-    </script> -->
-    {% endcomment %} {% comment %}
+    
     <script>
       // Function to handle form submission
+      document.addEventListener('DOMContentLoaded', function () {
+       
       document
-        .getElementById("myForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent the form from submitting the traditional way
+      .getElementById("myForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
 
-          // Capture form values
-          const selectedSport = document.querySelector(
-            'input[name="sport"]:checked'
-          ).value;
-          const searchInput = document.getElementById("search-input").value;
-          const datePickerElement = document.querySelector("date-picker"); // Select the custom element
-          const dateToggleValue = datePickerElement.getDateToggleValue();
-          const selectedTimeSlots = document
-            .querySelector(".time-slots .tab.active")
-            .getAttribute("value");
+        // Capture form values
+        const selectedSport = document.querySelector(
+          'input[name="sport"]:checked'
+        ).value;
+        const searchInput = document.getElementById("search-input").value;
+        const datePickerElement = document.querySelector("date-picker");
+        const dateToggleValue = datePickerElement.getDateToggleValue();
+        const selectedTimeSlots = document
+          .querySelector(".time-slots .tab.active")
+          .getAttribute("value");
 
-          // Display values in the console
-          console.log("Selected Sport:", selectedSport);
-          console.log("Search Input:", searchInput);
-          console.log("Date Toggle Value:", dateToggleValue);
-          console.log("Selected Time Slot:", selectedTimeSlots);
+        // Create an object to store the form data
+        const formData = {
+          selectedSport,
+          searchInput,
+          dateToggleValue,
+          selectedTimeSlots,
+        };
 
-          // You can also capture and log the other values if needed
+        // Send the data to Django using Ajax
+        const csrfToken = document.querySelector(
+          "[name=csrfmiddlewaretoken]"
+        ).value;
 
-          // Now you can perform any additional processing or actions here
-
-          // For demonstration purposes, we can reset the form fields after submission
-          this.reset();
+        $.ajax({
+          type: "POST",
+          url: "{% url 'ajax_handle_request' %}", // Update with the correct URL
+          data: formData,
+          headers: {
+            "X-CSRFToken": csrfToken,
+          },
+          success: function (response) {
+            // Handle the response from Django here (e.g., display a success message)
+            console.log("Form submitted successfully.");
+            //console.log("Response from Django:", response);
+          },
+          error: function (error) {
+            // Handle any errors that occur during the Ajax request
+            console.error("Ajax request error:", error);
+          },
         });
-    </script>
-    {% endcomment %}
-    <script>
-      // Function to handle form submission
-      document
-        .getElementById("myForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent the form from submitting the traditional way
 
-          // Capture form values
-          const selectedSport = document.querySelector(
-            'input[name="sport"]:checked'
-          ).value;
-          const searchInput = document.getElementById("search-input").value;
-          const datePickerElement = document.querySelector("date-picker");
-          const dateToggleValue = datePickerElement.getDateToggleValue();
-          const selectedTimeSlots = document
-            .querySelector(".time-slots .tab.active")
-            .getAttribute("value");
+        // You can also capture and send other form values if needed
 
-          // Create an object to store the form data
-          const formData = {
-            selectedSport,
-            searchInput,
-            dateToggleValue,
-            selectedTimeSlots,
-          };
-
-          // Send the data to Django using Ajax
-          const csrfToken = document.querySelector(
-            "[name=csrfmiddlewaretoken]"
-          ).value;
-
-          $.ajax({
-            type: "POST",
-            url: "{% url 'ajax_handle_request' %}", // Update with the correct URL
-            data: formData,
-            headers: {
-              "X-CSRFToken": csrfToken,
-            },
-            success: function (response) {
-              // Handle the response from Django here (e.g., display a success message)
-              console.log("Form submitted successfully.");
-              console.log("Response from Django:", response);
-            },
-            error: function (error) {
-              // Handle any errors that occur during the Ajax request
-              console.error("Ajax request error:", error);
-            },
-          });
-
-          // You can also capture and send other form values if needed
-
-          // For demonstration purposes, we can reset the form fields after submission
-          this.reset();
-        });
+        // For demonstration purposes, we can reset the form fields after submission
+        this.reset();
+      });
+    });
     </script>
 
     <script src="{% static '/BookTurfMain/pages/Search_page/location.js' %}"></script>
-  </body>
-</html>
+    {% endblock body %}
+
