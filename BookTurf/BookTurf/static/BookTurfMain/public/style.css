@@ -1,3 +1,5 @@
+
+
 /* Reset some default styles 
 color: #F3694E #196670  #dde2e9
 #474747*/
@@ -71,6 +73,7 @@ nav {
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   background-color: #dde2e9;
+  border: none;
 }
 .search-icon {
   width: 18px; /* Adjust the width as needed */
@@ -103,10 +106,6 @@ nav {
 .turf-ratings {
   display: flex;
   align-items: center;
-}
-
-.turf-ratings p {
-  margin-bottom: 0px;
 }
 .star-icon {
   display: inline-block;
@@ -243,17 +242,6 @@ a.turf-click:active {
 }
 
 /*second nav bar*/
-.second-navbar {
-  position: fixed;
-  top: 60px; /* Adjust the top position based on the height of the main navigation bar */
-  left: 0;
-  width: 100%;
-  background-color: white;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  padding-top: 20px;
-}
 
 .nav-item {
   display: flex;
@@ -268,5 +256,43 @@ a.turf-click:active {
 
 .property {
   font-weight: normal;
+  border: none;
+  background-color: #dde2e9;
+  color: black;
+}
+.second-navform {
+  position: fixed;
+  top: 60px; /* Adjust the top position based on the height of the main navigation bar */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
   padding: 10px;
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: row;
+    text-align: center;
+    padding: 10px 0;
+    width: 100vw;
+  }
+  .tab-bar {
+    width: 100vw; /* Match the screen width on mobile */
+  }
+  .search-bar {
+    justify-content: center; /* Center the elements horizontally */
+    align-items: center;
+  }
+
+  .search-box {
+    width: 100%; /* Reduce the width of the search input */
+    margin-right: 10px; /* Add some margin to separate the input and button */
+    padding: 12px 20px;
+  }
+  .turf-profile {
+    width: 100vw;
+  }
 }
