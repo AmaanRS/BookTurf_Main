@@ -6,6 +6,7 @@
 {% endblock head %} 
 {% block body %}
 <header>
+      <form action="/BookTurf/BookTurfMain/index/" method="get">
   <nav>
     <div class="logo">
       <img
@@ -13,9 +14,14 @@
         alt="Book Turf Logo"
       />
     </div>
-    <a href="/BookTurf/BookTurfMain/search/" class="turf-click">
       <div class="search-bar">
-        <div class="search-box">Search</div>
+        <input
+          type="text"
+          id="search-input"
+          name="searchInput"
+          class="search-box"
+          placeholder="Search"
+        />
         <button type="submit">
           <img
             src="{% static 'BookTurfMain/assets/search (1).png'%}"
@@ -23,7 +29,6 @@
           />
         </button>
       </div>
-    </a>
     <div class="login-signup">
       <a href="/BookTurf/BookTurfMain/sign_up"
         ><img
@@ -33,28 +38,42 @@
     </div>
   </nav>
   <div class="second-navbar">
-    <div class="nav-item">
-      <div class="rounded-block">
-        <span class="property">Sports</span>
+      <div class="nav-item">
+        <div class="rounded-block">
+          <select id="sports" name="sports" class="property">
+            <option value="any">Select Sports</option>
+            <option value="cricket">Cricket</option>
+            <option value="football">Football</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="nav-item">
-      <div class="rounded-block">
-        <span class="property">Time</span>
+      <div class="nav-item">
+        <div class="rounded-block">
+          <select id="time" name="time" class="property">
+            <option value="any">Select Time</option>
+            <option value="5-6 am">5-6 am</option>
+            <option value="6-7 am">6-7 am</option>
+            <!-- Add more time options as needed -->
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="nav-item">
-      <div class="rounded-block">
-        <span class="property">Date</span>
+      <div class="nav-item">
+        <div class="rounded-block">
+          <input
+            type="date"
+            id="date"
+            name="date"
+            class="property"
+            placeholder="mm/dd/yy"
+          />
+        </div>
       </div>
-    </div>
-    <div class="nav-item">
-      <div class="rounded-block">
-        <span class="property">Sort</span>
-      </div>
-    </div>
+    </form>
   </div>
 </header>
+
+
+
 {% for profile in profiles %}
 <main>
   <a
