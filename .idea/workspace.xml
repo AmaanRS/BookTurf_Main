@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c6585929-d418-452f-93ef-0dd48016e8ba" name="Changes" comment="Solved the bug of images not showing">
+      <change afterPath="$PROJECT_DIR$/BookTurf/BookTurf/media/BookTurfMain/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookTurf/BookTurf/media/BookTurfMain/base.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookTurf/BookTurf/media/BookTurfMain/bird.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookTurf/BookTurf/media/BookTurfMain/message.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookTurf/BookTurf/media/BookTurfMain/pipe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookTurf/BookTurf/Templates/BookTurfMain/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/BookTurf/BookTurf/Templates/BookTurfMain/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookTurf/BookTurf/Templates/BookTurfMain/turf_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/BookTurf/BookTurf/Templates/BookTurfMain/turf_profile.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+</project>
