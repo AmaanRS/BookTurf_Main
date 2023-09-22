@@ -28,9 +28,6 @@ urlpatterns = [
     path('BookTurfMain/turf_profile/<int:id>/',views.turf_profile,name="turf_profile"),
     path('BookTurfMain/add_turf_profile/',views.add_turf_profile,name="add_turf_profile"),
     path('BookTurfMain/add_turf_profile/createTurf_Profile/',views.createTurf_Profile,name="createTurf_Profile"),
-    path('BookTurfMain/search/',views.search,name="search"),
-    path('BookTurfMain/submitform/',views.submitform,name="submitform"),
-    path('ajax_handle_request/', views.handle_ajax_request, name='ajax_handle_request'),
-    path('another-view/', views.another_view, name='another_view'),
+    
 
 ]

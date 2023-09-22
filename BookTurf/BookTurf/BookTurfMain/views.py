@@ -14,10 +14,24 @@ from django.http import HttpResponse, JsonResponse
 # Create your views here.
 def index(request):
     try:
-        search = request.GET['search']
-        profiles = Turf_Profile.objects.filter(turf_name__icontains=search)
+        search = request.GET['searchInput']
+        sports = request.GET['sports']
+        time = request.GET['time']
+        if(sports == "any"):
+            sports = ""
+        if(time == "any"):
+            time = ""
+        profiles = Turf_Profile.objects.filter(turf_name__icontains=search,turf_category_1__icontains=sports)
         pics = Turf_Pics.objects.all()
-        params = {"profiles": profiles, "pics": pics}
+        first_pics = {}
+        for profile in profiles:
+            for pic in pics:
+                if pic.turf_ref_id == profile.turf_id:
+                    first_pics[profile.turf_id] = pic
+                    break
+        params = {"profiles": profiles, "pics": first_pics}
+
+        print(params,"killllllllllllllll")
         return render(request, 'BookTurfMain/index.html', params)
     except Exception :
         profiles = Turf_Profile.objects.all()
@@ -159,66 +173,4 @@ def createTurf_Profile(request):
             # messages.success(request, 'Turf NotCreated')
             messages.success(request, e)
             return redirect('add_turf_profile')
-
-
-def search(request):
-    return render(request,'BookTurfMain/search.html')
-
-
-
-def submitform(request):    
-    return HttpResponse('Form submitted successfully.')
-
-
-def handle_ajax_request(request):
-    if request.method == "POST":
-        selected_sport = request.POST.get("selectedSport")
-        search_input = request.POST.get("searchInput")
-        date_toggle_value = request.POST.get("dateToggleValue")
-        selected_time_slots = request.POST.get("selectedTimeSlots")
-
-        # Process the form data or perform any necessary actions here
-        # Store the data in the session
-        request.session['selected_sport'] = selected_sport
-        request.session['search_input'] = search_input
-        request.session['date_toggle_value'] = date_toggle_value
-        request.session['selected_time_slots'] = selected_time_slots
-
-
-        # Print the received data (you can replace this with your own logic)
-        print("Selected Sport:", selected_sport)
-        print("Search Input:", search_input)
-        print("Date Toggle Value:", date_toggle_value)
-        print("Selected Time Slot:", selected_time_slots)
-
-        response_content = f"Selected Sport: {selected_sport}\n" \
-                           f"Search Input: {search_input}\n" \
-                           f"Date Toggle Value: {date_toggle_value}\n" \
-                           f"Selected Time Slot: {selected_time_slots}\n"
-
-        # Return an HTTP response with the data
-        # return render(request, 'BookTurfMain/index.html')
-        return redirect("another_view")
-        
-
-        # return HttpResponse(response_content, content_type="text/plain")
-
-    return HttpResponse("Invalid request method", content_type="text/plain")
-
-
-def another_view(request):
-    # Retrieve the data from the session
-    selected_sport = request.session.get('selected_sport')
-    search_input = request.session.get('search_input')
-    date_toggle_value = request.session.get('date_toggle_value')
-    selected_time_slots = request.session.get('selected_time_slots')
-
-    # Use the retrieved data to render a response or perform actions
-
-    # ... other processing ...
-
-    # Return to the index page or render a different template
-    return redirect("index")
-
-
 

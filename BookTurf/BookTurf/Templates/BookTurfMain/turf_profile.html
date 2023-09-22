@@ -47,11 +47,23 @@
       <div class="arrow-left">
         <i class="fas fa-arrow-left"></i>
       </div>
+<<<<<<< Updated upstream
       <div class="slider">
         <img src="{% static '/BookTurfMain/assets/hostuser (1).png' %}" alt="Image 1">
         <img src="{% static '/BookTurfMain/assets/whatsapp.png' %}" alt="Image 2">
         <img src="{% static '/BookTurfMain/assets/light.png' %}" alt="Image 3">
     </div>
+=======
+      {% if pic0 and pic1 and pic2 %}
+
+      <div class="slider">
+        <img src="{{pic0.turf_picture.url}}" alt="Image 1">
+        <img src="{{pic1.turf_picture.url}}" alt="Image 2">
+        <img src="{{pic2.turf_picture.url}}" alt="Image 3">
+    </div>
+    {% endif %}
+
+>>>>>>> Stashed changes
       <div class="arrow-right">
         <i class="fas fa-arrow-right"></i>
       </div>

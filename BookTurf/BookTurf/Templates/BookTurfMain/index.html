@@ -6,6 +6,7 @@
 {% endblock head %} 
 {% block body %}
 <header>
+  <form id="/BookTurf/BookTurfMain/index/" method="get">
   <nav>
     <div class="logo">
       <img
@@ -13,8 +14,6 @@
         alt="Book Turf Logo"
       />
     </div>
-    <form id="myForm" method="POST">
-      {% csrf_token %}
       <div class="search-bar">
         <input
           type="text"
@@ -30,7 +29,6 @@
           />
         </button>
       </div>
-    </form>
     <div class="login-signup">
       <a href="/BookTurf/BookTurfMain/sign_up"
         ><img
@@ -40,7 +38,6 @@
     </div>
   </nav>
   <div class="second-navbar">
-    <form method="POST" id="navbar-form" class="second-navform">
       <div class="nav-item">
         <div class="rounded-block">
           <select id="sports" name="sports" class="property">
@@ -50,7 +47,6 @@
 >>>>>>> Stashed changes
             <option value="cricket">Cricket</option>
             <option value="football">Football</option>
-            <option value="any">Any</option>
           </select>
         </div>
       </div>
@@ -78,8 +74,13 @@
           />
         </div>
       </div>
+<<<<<<< Updated upstream
     </form>
   </div>
+=======
+    </div>
+  </form>
+>>>>>>> Stashed changes
 </header>
 {% for profile in profiles %}
 <main>
