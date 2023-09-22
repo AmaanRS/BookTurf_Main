@@ -6,9 +6,6 @@ from django.contrib.auth.hashers import make_password
 from .models import Turf_Profile
 from .models import addmin
 from .models import Turf_Pics
-from django.http import HttpResponse, JsonResponse
-
-
 
 
 # Create your views here.

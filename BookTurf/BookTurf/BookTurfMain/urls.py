@@ -27,7 +27,6 @@ urlpatterns = [
     path('BookTurfMain/login_page/authenticate/',views.login_page_authenticate,name="login_page_authenticate"),
     path('BookTurfMain/turf_profile/<int:id>/',views.turf_profile,name="turf_profile"),
     path('BookTurfMain/add_turf_profile/',views.add_turf_profile,name="add_turf_profile"),
-    path('BookTurfMain/add_turf_profile/createTurf_Profile/',views.createTurf_Profile,name="createTurf_Profile"),
+    path('BookTurfMain/add_turf_profile/createTurf_Profile/',views.createTurf_Profile,name="createTurf_Profile")
     
-
 ]
