@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import os
 from django.db.models.signals import post_save , pre_save
 from django.dispatch import receiver
@@ -27,7 +28,17 @@ class Turf_Profile(models.Model):
     turf_price = models.IntegerField(default=9999991)
     turf_host_name = models.CharField(max_length=100,default="")
     turf_map = models.CharField(max_length=300,default="")
-
+    turf_weekday_base = models.IntegerField(default=9999999)
+    turf_weekday_peak = models.IntegerField(default=9999999)
+    turf_friday_base = models.IntegerField(default=9999999)
+    turf_friday_peak = models.IntegerField(default=9999999)
+    turf_saturday_base = models.IntegerField(default=9999999)
+    turf_saturday_peak = models.IntegerField(default=9999999)
+    turf_sunday_base = models.IntegerField(default=9999999)
+    turf_sunday_peak = models.IntegerField(default=9999999)
+    turf_field_1 = models.IntegerField(default=1)
+    turf_field_2 = models.IntegerField(default=2)
+    turf_field_3 = models.IntegerField(default=3)
     def __str__(self):
         return self.turf_name
 
@@ -95,3 +106,12 @@ class addmin(models.Model):
     addmin_id = models.AutoField(primary_key=True)
     addmin_username = models.CharField(max_length=100, default="")
     addmin_password = models.CharField(max_length=100,default="")
+
+
+class Turf_Booked(models.Model):
+    turf_profile = models.ForeignKey(Turf_Profile,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    turf_price = models.IntegerField(default=999999999)
+    turf_timeslot = models.CharField(default="timeslot...",max_length=200)
+    turf_field_booked = models.IntegerField(default=999)
+    # turf_transcation_id

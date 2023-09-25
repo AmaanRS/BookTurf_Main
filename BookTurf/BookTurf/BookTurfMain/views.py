@@ -6,6 +6,9 @@ from django.contrib.auth.hashers import make_password
 from .models import Turf_Profile
 from .models import addmin
 from .models import Turf_Pics
+from django.http import HttpResponse, JsonResponse
+
+
 
 
 # Create your views here.
@@ -27,8 +30,6 @@ def index(request):
                     first_pics[profile.turf_id] = pic
                     break
         params = {"profiles": profiles, "pics": first_pics}
-
-        print(params,"killllllllllllllll")
         return render(request, 'BookTurfMain/index.html', params)
     except Exception :
         profiles = Turf_Profile.objects.all()
@@ -151,11 +152,26 @@ def createTurf_Profile(request):
         turf_map =request.POST['turf_map']
         turf_price =request.POST['turf_price']
         turf_picture =request.FILES.getlist('turf_picture')
+        turf_weekday_base = request.POST['turf_weekday_base']
+        turf_weekday_peak = request.POST['turf_weekday_peak']
+        turf_friday_base = request.POST['turf_friday_base']
+        turf_friday_peak =request.POST['turf_friday_peak']
+        turf_saturday_base = request.POST['turf_saturday_base']
+        turf_saturday_peak = request.POST['turf_saturday_peak']
+        turf_sunday_base = request.POST['turf_sunday_base']
+        turf_sunday_peak = request.POST['turf_sunday_peak']
+        turf_field_1 = request.POST['turf_field_1']
+        turf_field_2 = request.POST['turf_field_2']
+        turf_field_3 = request.POST['turf_field_3']
         try:
             new_turf_profile = Turf_Profile(turf_name=turf_name,turf_rating=turf_rating,turf_category_1=turf_category_1,
                                              turf_category_2=turf_category_2,turf_category_3=turf_category_3,turf_category_4=turf_category_4,
                                              turf_description=turf_description,turf_rules_regulations=turf_rules_regulations,turf_address=turf_address,
-                                             turf_ownerContact_number=turf_ownerContact_number,turf_host_name=turf_host_name,turf_map=turf_map,turf_price=turf_price)
+                                             turf_ownerContact_number=turf_ownerContact_number,turf_host_name=turf_host_name,turf_map=turf_map,turf_price=turf_price,
+                                            turf_weekday_base=turf_weekday_base,turf_weekday_peak=turf_weekday_peak,turf_friday_base=turf_friday_base,
+                                            turf_friday_peak=turf_friday_peak,turf_saturday_base=turf_saturday_base,turf_saturday_peak=turf_saturday_peak,
+                                            turf_sunday_base=turf_sunday_base,turf_sunday_peak=turf_sunday_peak,turf_field_1=turf_field_1,turf_field_2=turf_field_2,
+                                            turf_field_3=turf_field_3)
             new_turf_pic = Turf_Pics(turf_ref=new_turf_profile,turf_picture=turf_picture)
             new_turf_profile.save()
             for pic in range(len(new_turf_pic.turf_picture)) :
