@@ -114,102 +114,12 @@
     <h3 class="time-heading">Available Timeslots</h3>
     <div class="timegrid">
       <div class="grid-container">
+        {% for time_slot in profile.custom_timeslot %}
         <div class="time-slot">
-          <div class="time">5-6 am</div>
-          <div class="perhourprice">&#8377;1500</div>
+          <div class="time">{{ time_slot }}</div>
+          <div class="perhourprice">&#8377;1200</div> 
         </div>
-        <div class="time-slot">
-          <div class="time">6-7 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">7-8 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">8-9 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">9-10 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">10-11 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">11-12 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">12-1 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">1-2 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">2-3 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">3-4 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">4-5 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">5-6 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">6-7 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">7-8 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">8-9 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">9-10 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">10-11 pm</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">11-12 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">12-1 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">1-2 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">2-3 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">3-4 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
-        <div class="time-slot">
-          <div class="time">4-5 am</div>
-          <div class="perhourprice">&#8377;1500</div>
-        </div>
+      {% endfor %}
       </div>
     </div>
     <hr class="divider" />

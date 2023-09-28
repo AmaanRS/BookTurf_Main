@@ -160,9 +160,9 @@ def createTurf_Profile(request):
         turf_saturday_peak = request.POST['turf_saturday_peak']
         turf_sunday_base = request.POST['turf_sunday_base']
         turf_sunday_peak = request.POST['turf_sunday_peak']
-        turf_field_1 = request.POST['turf_field_1']
-        turf_field_2 = request.POST['turf_field_2']
-        turf_field_3 = request.POST['turf_field_3']
+        # turf_field_1 = request.POST['turf_field_1']
+        # turf_field_2 = request.POST['turf_field_2']
+        # turf_field_3 = request.POST['turf_field_3']
         try:
             new_turf_profile = Turf_Profile(turf_name=turf_name,turf_rating=turf_rating,turf_category_1=turf_category_1,
                                              turf_category_2=turf_category_2,turf_category_3=turf_category_3,turf_category_4=turf_category_4,
@@ -170,8 +170,9 @@ def createTurf_Profile(request):
                                              turf_ownerContact_number=turf_ownerContact_number,turf_host_name=turf_host_name,turf_map=turf_map,turf_price=turf_price,
                                             turf_weekday_base=turf_weekday_base,turf_weekday_peak=turf_weekday_peak,turf_friday_base=turf_friday_base,
                                             turf_friday_peak=turf_friday_peak,turf_saturday_base=turf_saturday_base,turf_saturday_peak=turf_saturday_peak,
-                                            turf_sunday_base=turf_sunday_base,turf_sunday_peak=turf_sunday_peak,turf_field_1=turf_field_1,turf_field_2=turf_field_2,
-                                            turf_field_3=turf_field_3)
+                                            turf_sunday_base=turf_sunday_base,turf_sunday_peak=turf_sunday_peak)
+                                            # ,turf_field_1=turf_field_1,turf_field_2=turf_field_2,
+                                            # turf_field_3=turf_field_3)
             new_turf_pic = Turf_Pics(turf_ref=new_turf_profile,turf_picture=turf_picture)
             new_turf_profile.save()
             for pic in range(len(new_turf_pic.turf_picture)) :

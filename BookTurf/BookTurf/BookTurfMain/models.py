@@ -39,6 +39,33 @@ class Turf_Profile(models.Model):
     turf_field_1 = models.IntegerField(default=1)
     turf_field_2 = models.IntegerField(default=2)
     turf_field_3 = models.IntegerField(default=3)
+    custom_timeslot = models.JSONField(default=[
+        "5-6 am",
+        "6-7 am",
+        "7-8 am",
+        "8-9 am",
+        "9-10 am",
+        "10-11 am",
+        "11-12 pm",
+        "12-1 pm",
+        "1-2 pm",
+        "2-3 pm",
+        "3-4 pm",
+        "4-5 pm",
+        "5-6 pm",
+        "6-7 pm",
+        "7-8 pm",
+        "8-9 pm",
+        "9-10 pm",
+        "10-11 pm",
+        "11-12 am",
+        "12-1 am",
+        "1-2 am",
+        "2-3 am",
+        "3-4 am",
+        "4-5 am",
+    ])
+
     def __str__(self):
         return self.turf_name
 
