@@ -197,14 +197,15 @@ class DatePicker extends HTMLElement {
     super();
 
     const lang = window.navigator.language;
-    const date = new Date(
-      this.date ?? (this.getAttribute("date") || Date.now())
-    );
+    const currentDate = new Date();
+    const maxDate = new Date();
+    maxDate.setDate(currentDate.getDate() + 30); // Allow dates up to 30 days in the future
 
     this.shadow = this.attachShadow({ mode: "open" });
-    this.date = new Day(date, lang);
+    this.date = new Day(currentDate, lang);
     this.calendar = new Calendar(this.date.year, this.date.monthNumber, lang);
-
+    this.minDate = currentDate; // Minimum allowed date is the current date
+    this.maxDate = maxDate;
     this.format = this.getAttribute("format") || this.format;
     this.position = "bottom"; // Set the position to always be at the bottom
     this.visible = true; // Always display the calendar
@@ -298,7 +299,13 @@ class DatePicker extends HTMLElement {
     );
   }
   selectDay(el, day) {
-    if (day.isEqualTo(this.date)) return;
+    if (
+      day.isEqualTo(this.date) ||
+      day.Date < this.minDate ||
+      day.Date > this.maxDate
+    ) {
+      return; // Do nothing if the date is not within the allowed range
+    }
 
     this.date = day;
 
@@ -394,6 +401,20 @@ class DatePicker extends HTMLElement {
     this.updateHeaderText();
     this.updateMonthDays();
     this.calendarDateElement.focus();
+
+    // Disable days outside the allowed range
+    const allDayElements = this.shadow.querySelectorAll(".month-day");
+    allDayElements.forEach((el) => {
+      const day = el.getAttribute("data-date");
+      if (day) {
+        const date = new Day(new Date(day));
+        if (date.Date < this.minDate || date.Date > this.maxDate) {
+          el.classList.add("disabled");
+        } else {
+          el.classList.remove("disabled");
+        }
+      }
+    });
   }
 
   static get observedAttributes() {
@@ -407,163 +428,168 @@ class DatePicker extends HTMLElement {
   get style() {
     return `
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-  :host {
-    position: relative;
-    font-family: "Poppins", sans-serif;
-  }
-  .wrapper{
-    position:relative;
-  }
-  .date-toggle {
-    padding: 8px 0;
-    padding-left:48px;
-    padding-top:10px;
-    border: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: white;
-    color: #333;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: capitalize;
-    width:325px;
-    font-size:20px;
-    font-family: "Poppins", sans-serif;
+    :host {
+      position: relative;
+      font-family: "Poppins", sans-serif;
+    }
+    .wrapper{
+      position:relative;
+    }
+    .date-toggle {
+      padding: 8px 0;
+      padding-left:48px;
+      padding-top:10px;
+      border: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background: white;
+      color: #333;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: capitalize;
+      width:325px;
+      font-size:20px;
+      font-family: "Poppins", sans-serif;
+      
     
-  
-  }
-  .wrapper{
-    position:relative;
-  }
-  .calendar-dropdown {
-    display: none;
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    top: 100%;
-    left: 60%;
-    transform: translate(-50%, 8px);
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    /*
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);*/
-  }
-  
-  .calendar-dropdown.top {
-    top: auto;
-    bottom: 100%;
-    transform: translate(-50%, -8px);
-  }
-  
-  .calendar-dropdown.left {
-    top: 50%;
-    left: 0;
-    transform: translate(calc(-8px + -100%), -50%);
-  }
-  
-  .calendar-dropdown.right {
-    top: 50%;
-    left: 100%;
-    transform: translate(8px, -50%);
-  }
-  
-  .calendar-dropdown.visible {
-    display: block;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0 30px;
-  }
-  
-  .header h4 {
-    margin: 0;
-    text-transform: capitalize;
-    font-size: 21px;
-    font-weight: bold;
-  }
-  
-  .header button {
-    padding: 0;
-    border: 8px solid transparent;
-    width: 0;
-    height: 0;
-    border-radius: 2px;
-    border-top-color: #222;
-    transform: rotate(90deg);
-    cursor: pointer;
-    background: none;
-    position: relative;
-  }
-  
-  .header button::after {
-    content: '';
-    display: block;
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .header button:last-of-type {
-    transform: rotate(-90deg);
-  }
-  
-  .week-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .week-days span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    text-transform: capitalize;
-    font-weight: bold;
-  }
-  
-  .month-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 5px;
-  }
-  
-  .month-day {
-    padding: 8px 5px;
-    color: #c7c9d3;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 120px;
-    cursor: pointer;
-    border: none;
-  }
-  
-  .month-day.current {
-    background: white;
-    color:black;
-  }
-  
-  .month-day.selected {
-    background: #196670;
-    color: #ffffff;
-  }
-  
-  .month-day:hover {
-    background: #196670;
-    color: #ffffff;
-  }
+    }
+    .wrapper{
+      position:relative;
+    }
+    .calendar-dropdown {
+      display: none;
+      width: 300px;
+      height: 300px;
+      position: absolute;
+      top: 100%;
+      left: 60%;
+      transform: translate(-50%, 8px);
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      /*
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);*/
+    }
+    
+    .calendar-dropdown.top {
+      top: auto;
+      bottom: 100%;
+      transform: translate(-50%, -8px);
+    }
+    
+    .calendar-dropdown.left {
+      top: 50%;
+      left: 0;
+      transform: translate(calc(-8px + -100%), -50%);
+    }
+    
+    .calendar-dropdown.right {
+      top: 50%;
+      left: 100%;
+      transform: translate(8px, -50%);
+    }
+    
+    .calendar-dropdown.visible {
+      display: block;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0 30px;
+    }
+    
+    .header h4 {
+      margin: 0;
+      text-transform: capitalize;
+      font-size: 21px;
+      font-weight: bold;
+    }
+    
+    .header button {
+      padding: 0;
+      border: 8px solid transparent;
+      width: 0;
+      height: 0;
+      border-radius: 2px;
+      border-top-color: #222;
+      transform: rotate(90deg);
+      cursor: pointer;
+      background: none;
+      position: relative;
+    }
+    
+    .header button::after {
+      content: '';
+      display: block;
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .header button:last-of-type {
+      transform: rotate(-90deg);
+    }
+    
+    .week-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .week-days span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      text-transform: capitalize;
+      font-weight: bold;
+    }
+    
+    .month-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 5px;
+    }
+    
+    .month-day {
+      padding: 8px 5px;
+      color: #c7c9d3;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 120px;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .month-day.current {
+      background: white;
+      color:black;
+    }
+    
+    .month-day.selected {
+      background: #196670;
+      color: #ffffff;
+    }
+    
+    .month-day:hover {
+      background: #196670;
+      color: #ffffff;
+    }
+    .month-day.disabled {
+      cursor: not-allowed;
+      color: #ccc;
+      background: #f8f8f8;
+    }
 `;
   }
   getDateToggleValue() {
