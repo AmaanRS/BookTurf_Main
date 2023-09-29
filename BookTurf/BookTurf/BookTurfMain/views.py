@@ -163,6 +163,92 @@ def createTurf_Profile(request):
         # turf_field_1 = request.POST['turf_field_1']
         # turf_field_2 = request.POST['turf_field_2']
         # turf_field_3 = request.POST['turf_field_3']
+
+        # remove_timeslot_1 = request.POST['time_slot_1']
+        # remove_timeslot_2 = request.POST['time_slot_2']
+        # remove_timeslot_3 = request.POST['time_slot_3']
+        # remove_timeslot_4 = request.POST['time_slot_4']
+        # remove_timeslot_5 = request.POST['time_slot_5']
+        # remove_timeslot_6 = request.POST['time_slot_6']
+        # remove_timeslot_7 = request.POST['time_slot_7']
+        # remove_timeslot_8 = request.POST['time_slot_8']
+        # remove_timeslot_9 = request.POST['time_slot_9']
+        # remove_timeslot_10 = request.POST['time_slot_10']
+        # remove_timeslot_11 = request.POST['time_slot_11']
+        # remove_timeslot_12 = request.POST['time_slot_12']
+        # remove_timeslot_13 = request.POST['time_slot_13']
+        # remove_timeslot_14 = request.POST['time_slot_14']
+        # remove_timeslot_15 = request.POST['time_slot_15']
+        # remove_timeslot_16 = request.POST['time_slot_16']
+        # remove_timeslot_17 = request.POST['time_slot_17']
+        # remove_timeslot_18 = request.POST['time_slot_18']
+        # remove_timeslot_19 = request.POST['time_slot_19']
+        # remove_timeslot_20 = request.POST['time_slot_20']
+        # remove_timeslot_21 = request.POST['time_slot_21']
+        # remove_timeslot_22 = request.POST['time_slot_22']
+        # remove_timeslot_23 = request.POST['time_slot_23']
+        # remove_timeslot_24 = request.POST['time_slot_24']
+
+        remove_timeslot_start = request.POST['remove_time_slot_start'].split(" ")
+        remove_timeslot_end = request.POST['remove_time_slot_end'].split(" ")
+        remove_timeslot_diff = request.POST['remove_time_slot_diff']
+        removed_timeslot = []
+        for i in range(int(remove_timeslot_start[0]),int(remove_timeslot_start[0])+int(remove_timeslot_diff)):
+            if remove_timeslot_start[1] == remove_timeslot_end[1]:
+                removed_timeslot.append(f"{i}-{i+1} {remove_timeslot_start[1]}")
+            else:
+                if(i<11):
+                    removed_timeslot.append(f"{i}-{i+1} {remove_timeslot_start[1]}")
+                elif(i >=11):
+                    if(i > 12):
+                        removed_timeslot.append(f"{(i+1) % 13}-{(i+2)%13} {remove_timeslot_end[1]}")
+                    else:
+                        removed_timeslot.append(f"{i % 13}-{(i+1)%13} {remove_timeslot_end[1]}")
+
+        try:
+            index = removed_timeslot.index("12-0 AM")
+            removed_timeslot[index] = "12-1 AM"
+        except ValueError:
+            print("12-0 AM not in list")
+
+        try:
+            indexx = removed_timeslot.index("12-0 PM")
+            removed_timeslot[indexx] = "12-1 PM"
+        except ValueError:
+            print("12-0 PM not in list")
+
+            
+        peak_timeslot_start = request.POST['peak_time_slot_start'].split(" ")
+        peak_timeslot_end = request.POST['peak_time_slot_end'].split(" ")
+        peak_timeslot_diff = request.POST['peak_time_slot_diff']
+        peak_timeslot = []
+        for i in range(int(peak_timeslot_start[0]),int(peak_timeslot_start[0])+int(peak_timeslot_diff)):
+            if peak_timeslot_start[1] == peak_timeslot_end[1]:
+                peak_timeslot.append(f"{i}-{i+1} {peak_timeslot_start[1]}")
+            else:
+                if(i<11):
+                    peak_timeslot.append(f"{i}-{i+1} {peak_timeslot_start[1]}")
+                elif(i >=11):
+                    if(i > 12):
+                        peak_timeslot.append(f"{(i+1) % 13}-{(i+2)%13} {peak_timeslot_end[1]}")
+                    else:
+                        peak_timeslot.append(f"{i % 13}-{(i+1)%13} {peak_timeslot_end[1]}")
+
+        try:
+            index = peak_timeslot.index("12-0 AM")
+            peak_timeslot[index] = "12-1 AM"
+        except ValueError:
+            print("12-0 AM not in list")
+
+        try:
+            indexx = peak_timeslot.index("12-0 PM")
+            peak_timeslot[indexx] = "12-1 PM"
+        except ValueError:
+            print("12-0 PM not in list")
+        
+        print(peak_timeslot)
+
+        
         try:
             new_turf_profile = Turf_Profile(turf_name=turf_name,turf_rating=turf_rating,turf_category_1=turf_category_1,
                                              turf_category_2=turf_category_2,turf_category_3=turf_category_3,turf_category_4=turf_category_4,
@@ -170,7 +256,7 @@ def createTurf_Profile(request):
                                              turf_ownerContact_number=turf_ownerContact_number,turf_host_name=turf_host_name,turf_map=turf_map,turf_price=turf_price,
                                             turf_weekday_base=turf_weekday_base,turf_weekday_peak=turf_weekday_peak,turf_friday_base=turf_friday_base,
                                             turf_friday_peak=turf_friday_peak,turf_saturday_base=turf_saturday_base,turf_saturday_peak=turf_saturday_peak,
-                                            turf_sunday_base=turf_sunday_base,turf_sunday_peak=turf_sunday_peak)
+                                            turf_sunday_base=turf_sunday_base,turf_sunday_peak=turf_sunday_peak,removed_timeslot=removed_timeslot,peak_timeslot=peak_timeslot)
                                             # ,turf_field_1=turf_field_1,turf_field_2=turf_field_2,
                                             # turf_field_3=turf_field_3)
             new_turf_pic = Turf_Pics(turf_ref=new_turf_profile,turf_picture=turf_picture)

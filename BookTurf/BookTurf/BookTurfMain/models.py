@@ -36,9 +36,15 @@ class Turf_Profile(models.Model):
     turf_saturday_peak = models.IntegerField(default=9999999)
     turf_sunday_base = models.IntegerField(default=9999999)
     turf_sunday_peak = models.IntegerField(default=9999999)
-    turf_field_1 = models.IntegerField(default=1)
-    turf_field_2 = models.IntegerField(default=2)
-    turf_field_3 = models.IntegerField(default=3)
+    # Make it Boolean
+    # turf_field_1 = models.IntegerField(default=1)
+    # turf_field_2 = models.IntegerField(default=2)
+    # turf_field_3 = models.IntegerField(default=3)
+
+    # Wase complete this
+    peak_timeslot = models.JSONField(default=[])
+    
+    removed_timeslot = models.JSONField(default=[])
     custom_timeslot = models.JSONField(default=[
          "12-1 AM",
         "1-2 AM",
