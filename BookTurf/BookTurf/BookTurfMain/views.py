@@ -7,6 +7,7 @@ from .models import Turf_Profile
 from .models import addmin
 from .models import Turf_Pics
 from django.http import HttpResponse, JsonResponse
+import datetime
 
 
 
@@ -273,4 +274,24 @@ def createTurf_Profile(request):
             # messages.success(request, 'Turf NotCreated')
             messages.success(request, e)
             return redirect('add_turf_profile')
+
+def ajax_date_and_timeslot_update(request):
+    # Define a date as year, month, and day WASE USE AJAX AND GET THESE INPUTS HERE
+    # year = 2023
+    # month = 10
+    # date = 1
+
+    date_object = datetime.date(year, month, date)
+    day = date_object.strftime("%A")
+    
+    turf_profile = Turf_Profile(turf_id= 2,turf_name="Amaan")
+
+    if(day == ('Monday' or 'Tuesday' or 'Wednesday' or 'Thursday')):
+        return HttpResponse(turf_profile.turf_weekday_base,turf_profile.turf_weekday_peak)
+    elif(day == 'Friday'):
+        return HttpResponse(turf_profile.turf_friday_base,turf_profile.turf_friday_peak)
+    elif(day == 'Saturday'):
+        return HttpResponse(turf_profile.turf_saturday_base,turf_profile.turf_saturday_peak)
+    elif(day == 'Sunday'):
+        return HttpResponse(turf_profile.turf_sunday_base,turf_profile.turf_sunday_peak)
 
