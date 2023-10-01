@@ -115,10 +115,17 @@
     <div class="timegrid">
       <div class="grid-container">
         {% for time_slot in profile.custom_timeslot %}
+          {% if time_slot in profile.removed_timeslot%}
+        <div class="time-slot">
+          <div class="time">{{ time_slot }}</div>
+          <div class="perhourprice">Close</div> 
+        </div>
+        {%else%}
         <div class="time-slot">
           <div class="time">{{ time_slot }}</div>
           <div class="perhourprice">&#8377;1200</div> 
         </div>
+        {%endif%}
       {% endfor %}
       </div>
     </div>
