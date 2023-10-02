@@ -29,6 +29,6 @@ urlpatterns = [
     path('BookTurfMain/add_turf_profile/',views.add_turf_profile,name="add_turf_profile"),
     path('BookTurfMain/add_turf_profile/createTurf_Profile/',views.createTurf_Profile,name="createTurf_Profile"),
     path('BookTurfMain/turf_profile/<int:id>/populate_timeslot',views.ajax_date_and_timeslot_update,name="ajax_date_and_timeslot_update"),
-    
+    path('BookTurfMain/date-view/', views.date_view, name='date_view'),
 
 ]

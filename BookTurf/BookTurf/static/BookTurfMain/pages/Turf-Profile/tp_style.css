@@ -620,3 +620,26 @@ button img {
     opacity: 1;
   }
 } */
+
+
+/*search button*/
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+}
+.search-button {
+  padding: 10px 20px; /* Adjust padding as needed */
+  border: none; /* Remove the border */
+  border-radius: 12px; /* Add border-radius */
+  background-color: #196670; /* Change background color to your preference */
+  color: #fff; /* Change text color to your preference */
+  cursor: pointer;
+  align-self: center;
+}
+
+/* Style the button on hover (optional) */
+.search-button:hover {
+  background-color: #196670; /* Change hover background color */
+}

@@ -71,6 +71,19 @@ class Turf_Profile(models.Model):
         "10-11 PM",
         "11-12 AM",
     ])
+    peak_timeslot = models.JSONField(default=[
+        "12-1 AM",
+        "1-2 AM",
+        "2-3 AM",
+        "3-4 AM",
+        "4-5 AM",
+        "6-7 PM",
+        "7-8 PM",
+        "8-9 PM",
+        "9-10 PM",
+        "10-11 PM",
+        "11-12 AM",
+    ])
 
     def __str__(self):
         return self.turf_name

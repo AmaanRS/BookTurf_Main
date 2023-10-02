@@ -295,3 +295,26 @@ def ajax_date_and_timeslot_update(request):
     elif(day == 'Sunday'):
         return HttpResponse(turf_profile.turf_sunday_base,turf_profile.turf_sunday_peak)
 
+
+
+def date_view(request):
+    if request.method == "POST":
+        
+        
+        date_toggle_value = request.POST.get("dateToggleValue")
+        
+
+        # Process the form data or perform any necessary actions here
+
+        # Print the received data (you can replace this with your own logic)
+        
+        print("Date Toggle Value:", date_toggle_value)
+        
+
+        response_content = f"Date Toggle Value: {date_toggle_value}\n"
+                           
+
+        # Return an HTTP response with the data
+        return HttpResponse(response_content, content_type="text/plain")
+
+    return HttpResponse("Invalid request method", content_type="text/plain")

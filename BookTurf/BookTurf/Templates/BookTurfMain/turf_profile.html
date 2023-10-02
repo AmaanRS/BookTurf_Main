@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Turf Profile </title>
     {% endblock head %}
     {% block body %}
@@ -106,10 +107,16 @@
            {{profile.turf_rules_regulations}}
     </p>
     <hr class="divider" />
-    <div class="wrapper">
-       <div class="wrapper-flex"> <date-picker format="DDD MMMM DD, YYYY"></date-picker></div>
-      </div>
-    </div>
+   <form id="date-Form">
+      {% csrf_token %}
+     <div class="wrapper">
+        <div class="wrapper-flex"> <date-picker format="DDD MMMM DD, YYYY"></date-picker></div>
+        </div>
+        <div class="search-container">
+       <button  class="search-button" type="submit" >Submit</button>  </div>
+     </div>
+   </form>
+
     <hr class="divider" />
     <h3 class="time-heading">Available Timeslots</h3>
     <div class="timegrid">
@@ -233,6 +240,55 @@
           readMore.textContent = "Read more";
         }
       }
+    </script>
+    <script>
+      document
+        .getElementById("date-Form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting the traditional way
+
+          // Capture form values
+         
+          
+          const datePickerElement = document.querySelector("date-picker");
+          const dateToggleValue = datePickerElement.getDateToggleValue();
+          
+
+          // Create an object to store the form data
+          const formData = {
+         
+            dateToggleValue,
+            
+          };
+
+          // Send the data to Django using Ajax
+          const csrfToken = document.querySelector(
+            "[name=csrfmiddlewaretoken]"
+          ).value;
+
+          $.ajax({
+            type: "POST",
+            url: "{% url 'date_view' %}", // Update with the correct URL
+            data: formData,
+            headers: {
+              "X-CSRFToken": csrfToken,
+            },
+            success: function (response) {
+              // Handle the response from Django here (e.g., display a success message)
+              console.log("Form submitted successfully.");
+              console.log("Response from Django:", response);
+            },
+            error: function (error) {
+              // Handle any errors that occur during the Ajax request
+              console.error("Ajax request error:", error);
+            },
+          });
+
+          // You can also capture and send other form values if needed
+
+          // For demonstration purposes, we can reset the form fields after submission
+          this.reset();
+        });
     </script>
     {% endblock body %}
 
