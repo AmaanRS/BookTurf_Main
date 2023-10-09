@@ -643,3 +643,28 @@ button img {
 .search-button:hover {
   background-color: #196670; /* Change hover background color */
 }
+li{
+  list-style: none;
+}
+
+/*search button*/
+.search-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.search-button1 {
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 12px; 
+  background-color: #196670; 
+  color: #fff; 
+  cursor: pointer;
+  align-self: center;
+}
+
+
+.search-button1:hover {
+  background-color: #196670; 
+}
