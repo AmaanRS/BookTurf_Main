@@ -57,7 +57,6 @@ function handleTimeSlotClick(event) {
 timeSlotContainers.forEach((container) => {
   container.addEventListener("click", handleTimeSlotClick);
 });
-
 // const slider = document.querySelector(".image-slider");
 // const arrLeft = document.querySelector(".arrow-left");
 // const arrRight = document.querySelector(".arrow-right");

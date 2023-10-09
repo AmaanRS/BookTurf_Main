@@ -113,29 +113,38 @@
         <div class="wrapper-flex"> <date-picker format="DDD MMMM DD, YYYY"></date-picker></div>
         </div>
         <div class="search-container">
-       <button  class="search-button" type="submit" >Submit</button>  </div>
+          <button  class="search-button" type="submit" >Check Price</button>  </div>
      </div>
-   </form>
+    </form>
 
     <hr class="divider" />
+  <form id="booking-Form" >
+      {% csrf_token %}
     <h3 class="time-heading">Available Timeslots</h3>
     <div class="timegrid">
       <div class="grid-container">
         {% for time_slot in profile.custom_timeslot %}
           {% if time_slot in profile.removed_timeslot%}
         <div class="time-slot">
-          <div class="time">{{ time_slot }}</div>
-          <div class="perhourprice">Close</div> 
+          <li class="time" value="{{ time_slot }}">{{ time_slot }}</li>
+          <li class="perhourprice">Close</li> 
         </div>
         {%else%}
         <div class="time-slot">
-          <div class="time">{{ time_slot }}</div>
-          <div class="perhourprice">&#8377;1200</div> 
+          <li class="time" value="{{ time_slot }}">{{ time_slot }}</li>
+          <li class="perhourprice">&#8377;1200</li> 
         </div>
         {%endif%}
       {% endfor %}
       </div>
     </div>
+    <div class="search-container1">
+      <button  class="search-button1" type="submit" >Check Availability</button>  </div>
+    
+    <input type="hidden" class="datess" value="" />
+  
+  </form> 
+  
     <hr class="divider" />
     <div class="host">
       <div class="host-content">
@@ -223,9 +232,9 @@
         </div>
       </div>
       <div class="right-section">
-        <button class="reserve-btn">Reserve</button>
+        <button class="reserve-btn" type="submit">Reserve</button>
       </div>
-    </div>
+    </div> 
 {% endfor %}
     <script>
       function toggleReviews() {
@@ -252,7 +261,7 @@
           
           const datePickerElement = document.querySelector("date-picker");
           const dateToggleValue = datePickerElement.getDateToggleValue();
-          
+          document.querySelector(".datess").value = dateToggleValue;
 
           // Create an object to store the form data
           const formData = {
@@ -290,5 +299,56 @@
           this.reset();
         });
     </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Your JavaScript code here
+      
+        // Example event listener for form submission
+        document.getElementById('booking-Form').addEventListener('submit', function (event) {
+          event.preventDefault(); // Prevent the form from submitting the traditional way
+      
+          // Serialize the form data
+        
+      
+          // Access and log the values of the hidden inputs
+          const selectedTimeSlotValue = document.querySelector('.time-slot.selected .time').getAttribute('value');
+          const datessValue = document.querySelector('.datess').value;
+      
+          // Display the values on the console
+          console.log('Selected Time Slot:', selectedTimeSlotValue);
+          console.log('Date:', datessValue);
+
+         
+          const formData = {
+            datessValue,
+            selectedTimeSlotValue
+          };
+          const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+
+          // Send the data to the server using AJAX
+          $.ajax({
+            type: 'POST',
+            url: '{% url "submit_booking" %}', // Update with the correct URL
+            data: formData,
+            headers: {
+              "X-CSRFToken": csrfToken,
+            },
+            
+            success: function (response) {
+              // Handle the response from the server (e.g., display a success message)
+              console.log('Form submitted successfully.');
+              console.log('Response from server:', response);
+      
+              // You can also redirect to another page after a successful submission if needed
+              // window.location.href = '/path/to/redirect';
+            },
+            error: function (error) {
+              // Handle any errors that occur during the AJAX request
+              console.error('Ajax request error:', error);
+            },
+          });
+        });
+      });
+      </script>
     {% endblock body %}
 

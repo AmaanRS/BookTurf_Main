@@ -302,7 +302,8 @@ def date_view(request):
         
         
         date_toggle_value = request.POST.get("dateToggleValue")
-        
+       
+
 
         # Process the form data or perform any necessary actions here
 
@@ -318,3 +319,23 @@ def date_view(request):
         return HttpResponse(response_content, content_type="text/plain")
 
     return HttpResponse("Invalid request method", content_type="text/plain")
+
+def submit_booking(request):
+    if request.method == 'POST':
+        # Get the data from the form
+        selected_time_slot = request.POST.get('selectedTimeSlotValue')  # Updated variable name
+        datess = request.POST.get('datessValue')  # Updated variable name
+
+        # Process the data (you can save it to the database or perform any other actions)
+
+         # For demonstration purposes, print the data to the console
+        print("Selected Time Slot:", selected_time_slot)
+        print("Date:", datess)
+
+        # You can also save the data to the database here if needed
+
+        # Return a JSON response with the values
+        return JsonResponse({'selectedTimeSlotValue': selected_time_slot, 'datessValue': datess})
+
+    # Handle GET requests or other cases
+    return JsonResponse({'error': 'Invalid request'})
