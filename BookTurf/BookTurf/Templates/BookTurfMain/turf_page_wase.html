@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turf HomePage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        /* Reset some default styles 
+color: #F3694E #196670  #dde2e9
+#474747*/
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .logo-container {
+            margin-right: 28px;
+            margin-top: 5px;
+        }
+
+        .logo-img {
+            width: 35px;
+            height: 35px;
+            margin-left: 5px;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 10px;
+            padding-top: 25px;
+        }
+
+        .nav-item-container {
+            display: flex;
+            text-align: center;
+            width: 210px;
+            justify-content: center;
+            margin: auto;
+            margin-left: 17px;
+            background-color: #dde2e9;
+            border-radius: 30px;
+            padding: 5px 0;
+        }
+
+        .nav-items {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: inline-flex;
+            /* Use flexbox to align items center vertically */
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+            color: #000000;
+            background-color: #dde2e9;
+            cursor: pointer;
+            margin-right: 30px;
+            margin: auto;
+            font-size: 16px;
+            padding: 2px 22px;
+        }
+
+        .nav-item:hover {
+            background-color: white;
+        }
+
+        /*the body*/
+        .box {
+            background-color: #dde2e9;
+            border-radius: 30px;
+            /* Increased border-radius for more rounded corners */
+            padding: 30px;
+            margin: 10px;
+        }
+
+        .box1 {
+            background-color: white;
+            border-radius: 30px;
+            /* Increased border-radius for more rounded corners */
+            padding: 30px;
+            margin: 10px;
+        }
+
+        .box-container {
+            display: flex;
+            /* Display the boxes side by side */
+            justify-content: flex-start;
+            padding-left: 15px;
+            /* Center the boxes horizontally */
+        }
+
+        .box p {
+            font-size: 18px;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1 p {
+            font-size: 18px;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /*calendar*/
+
+        .wrapper {
+            width: 100%;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .wrapper header {
+            display: flex;
+            align-items: center;
+            padding: 25px 30px 10px;
+            justify-content: space-between;
+        }
+
+        header .icons {
+            display: flex;
+        }
+
+        header .icons span {
+            height: 38px;
+            width: 38px;
+            margin: 0 1px;
+            cursor: pointer;
+            color: #878787;
+            text-align: center;
+            line-height: 38px;
+            font-size: 1.9rem;
+            user-select: none;
+            border-radius: 50%;
+        }
+
+        .icons span:last-child {
+            margin-right: -10px;
+        }
+
+        header .icons span:hover {
+            background: #f2f2f2;
+        }
+
+        header .current-date {
+            font-size: 1.45rem;
+            font-weight: 500;
+        }
+
+        /*time*/
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-gap: 5px;
+        }
+
+        .timegrid {
+            padding: 10px 20px;
+        }
+
+        .time {
+            padding: 10px;
+            font-size: smaller;
+            border-radius: 12px;
+        }
+
+        .time:hover {
+            background-color: #196670;
+            color: white;
+        }
+
+        .time-slot {
+            font-weight: bold;
+            grid-row: 1;
+        }
+
+        .time {
+            text-align: center;
+            background-color: #dde2ed;
+        }
+
+        .time-heading {
+            font-weight: bold;
+            margin-top: -8px;
+            text-align: center;
+        }
+
+        .divider {
+            margin: 10px 20px;
+        }
+
+        /*Hide function*/
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        /*PROFILE SECTION*/
+        .profile-container {
+            text-align: center;
+        }
+
+        .profile-header {
+            margin-top: 20px;
+        }
+
+        .profile-header h1 {
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .profile-header img {
+            width: 150px;
+            border-radius: 50%;
+            margin: 10px 0;
+        }
+
+        .username {
+            margin: 0;
+        }
+
+        .personal-info,
+        .account {
+            display: flex;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .personal-info h4,
+        .account h4 {
+            font-size: 20px;
+            margin: 0;
+            flex: 1;
+            font-weight: normal;
+            font-size: 16px;
+        }
+
+        .info-logo,
+        .account-logo {
+            flex: 1;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .arrow-icon {
+            flex: 1;
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .arrow-icon i {
+            font-size: 16px;
+        }
+
+        .logout {
+            margin: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .logout-button {
+            display: flex;
+            align-items: center;
+            background-color: #196670;
+            color: #fff;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        .logout-button:hover {
+            background-color: white;
+            border: #196670 solid 2px;
+            color: #196670;
+        }
+
+        .turf-button {
+            cursor: pointer;
+            display: flex;
+            /* Display the boxes side by side */
+            justify-content: center;
+            padding-top: 20px;
+            /* Center the boxes horizontally */
+        }
+
+        .turf-button-box {
+            padding: 20px;
+            text-align: center;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            margin: 10px;
+            background-color: #dde2e9;
+        }
+
+        /* Add any additional styling you need */
+
+        /* responsive for PC */
+        .other-block {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider1 {
+            margin: 10px 20px;
+        }
+
+        /* Modal */
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1;
+        }
+
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 2;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            /* Adjust your styles for modal content */
+            text-align: center;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #666;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        #cancelBooking,
+        #confirmBooking {
+            padding: 5px 20px;
+            margin: 0px 20px;
+            color: white;
+            background-color: #196670;
+            border: 2px solid #196670;
+            border-radius: 12px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #cancelBooking:hover,
+        #confirmBooking:hover {
+            background-color: white;
+            color: #196670;
+            outline: none;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            outline: none;
+        }
+
+        .form-group input {
+            border-radius: 12px;
+            padding: 10px;
+            background-color: #dde2e9;
+            border: none;
+            outline: none;
+        }
+
+        .form-group select {
+            border-radius: 12px;
+            padding: 10px;
+            background-color: #dde2e9;
+            border: none;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo-container">
+            <img src="/Frontend/src/assets/logomain.png" alt="Logo" class="logo-img" />
+        </div>
+        <div class="nav-items">
+            <div class="nav-item-container">
+                <div class="nav-item" onclick="highlightNav(this)">Home</div>
+                <div class="nav-item" onclick="highlightNav(this)">Profile</div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <hr class="divider" />-->
+    <div class="section home-section show" id="homeSection">
+        <!-- Home section content -->
+
+        <div class="box-container">
+            <div class="box">
+                <p><b>Total Revenue:</b> ₹3,00,000 <br /><b>This week:</b> ₹15,000</p>
+            </div>
+            <div class="box1">
+                <p>Payment Log</p>
+            </div>
+        </div>
+        <!--
+    <hr class="divider" />-->
+        <div class="other-block">
+            <div class="date">
+                <div class="wrapper">
+                    <header>
+                        <p class="current-date"></p>
+                        <div class="icons">
+                            <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                            <span id="next" class="material-symbols-rounded">chevron_right</span>
+                        </div>
+                    </header>
+                </div>
+            </div>
+            <h3 class="time-heading">Available Timeslots</h3>
+            <div class="timegrid">
+                <div class="grid-container">
+                    <div class="time" data-modal-target=".modal">5-6 am</div>
+                    <div class="time" data-modal-target=".modal">6-7 am</div>
+                    <div class="time" data-modal-target=".modal">7-8 am</div>
+                    <div class="time" data-modal-target=".modal">8-9 am</div>
+                    <div class="time" data-modal-target=".modal">9-10 am</div>
+                    <div class="time" data-modal-target=".modal">10-11 am</div>
+                    <div class="time" data-modal-target=".modal">11-12 pm</div>
+                    <div class="time" data-modal-target=".modal">12-1 pm</div>
+                    <div class="time" data-modal-target=".modal">1-2 pm</div>
+                    <div class="time" data-modal-target=".modal">2-3 pm</div>
+                    <div class="time" data-modal-target=".modal">3-4 pm</div>
+                    <div class="time" data-modal-target=".modal">4-5 pm</div>
+                    <div class="time" data-modal-target=".modal">5-6 pm</div>
+                    <div class="time" data-modal-target=".modal">6-7 pm</div>
+                    <div class="time" data-modal-target=".modal">7-8 pm</div>
+                    <div class="time" data-modal-target=".modal">8-9 pm</div>
+                    <div class="time" data-modal-target=".modal">9-10 pm</div>
+                    <div class="time" data-modal-target=".modal">10-11 pm</div>
+                    <div class="time" data-modal-target=".modal">11-12 am</div>
+                    <div class="time" data-modal-target=".modal">12-1 am</div>
+                    <div class="time" data-modal-target=".modal">1-2 am</div>
+                    <div class="time" data-modal-target=".modal">2-3 am</div>
+                    <div class="time" data-modal-target=".modal">3-4 am</div>
+                    <div class="time" data-modal-target=".modal">4-5 am</div>
+                </div>
+            </div>
+            <div class="modal-overlay" id="overlay"></div>
+            <div class="modal" id="modal">
+                <div class="modal-content">
+                    <button class="close-button" id="closeButton">&times;</button>
+                    <h3>Timeslot</h3>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingId">Booking ID:</label>
+                        <input type="text" id="bookingId" />
+                    </div>
+                    <div class="form-group">
+                        <label for="number">Number:</label>
+                        <input type="text" id="number" />
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Booking Status:</label>
+                        <select id="status">
+                            <option value="advance">Advance</option>
+                            <option value="full">Full</option>
+                            <option value="none">None</option>
+                        </select>
+                    </div>
+                    <div class="button-container">
+                        <button id="cancelBooking">Cancel Booking</button>
+                        <button id="confirmBooking">Confirm Booking</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section profile-section hide" id="profileSection">
+        <!-- Profile section content -->
+        <div class="profile-container">
+            <div class="profile-header">
+                <h1>Host Profile</h1>
+                <img src="/Frontend/src/assets/hostuser (1).png" alt="Profile Photo" />
+                <h2 class="username">Wase</h2>
+            </div>
+            <hr class="divider1" />
+            <div class="personal-info">
+                <div class="info-text">
+                    <h4>Personal Info</h4>
+                    <!-- Add more personal info details here -->
+                </div>
+                <div class="arrow-icon">
+                    <i class="fas fa-chevron-right"></i>
+                    <!-- Font Awesome arrow right icon -->
+                </div>
+            </div>
+            <hr class="divider1" />
+            <div class="account">
+                <div class="account-text">
+                    <h4>Account</h4>
+                    <!-- Add more account details here -->
+                </div>
+                <div class="arrow-icon">
+                    <i class="fas fa-chevron-right"></i>
+                    <!-- Font Awesome arrow right icon -->
+                </div>
+            </div>
+            <hr class="divider" />
+            <div class="turf-button">
+                <div class="turf-button-box">
+                    <h2>Lush Turf</h2>
+                </div>
+                <div class="turf-button-box">
+                    <h2>Lush Turf</h2>
+                </div>
+            </div>
+            <div class="logout">
+                <button class="logout-button">Log out</button>
+            </div>
+        </div>
+    </div>
+    <script defer>
+        const currentDateElement = document.querySelector(".current-date");
+        const prevIcon = document.getElementById("prev");
+        const nextIcon = document.getElementById("next");
+
+        let currentDate = new Date();
+
+        const updateCurrentDate = () => {
+            const months = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+            ];
+            const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            const currentDay = daysOfWeek[currentDate.getDay()];
+            const currentMonth = months[currentDate.getMonth()];
+            const currentYear = currentDate.getFullYear();
+            const currentDateOfMonth = currentDate.getDate();
+
+            currentDateElement.textContent = `${currentDay}, ${currentMonth} ${currentDateOfMonth}, ${currentYear}`;
+        };
+
+        updateCurrentDate();
+
+        prevIcon.addEventListener("click", () => {
+            currentDate.setDate(currentDate.getDate() - 1);
+
+            // If the new date is the 0th day (last day of the previous month),
+            // set the date to the last day of the previous month and decrement the month
+            if (currentDate.getDate() === 0) {
+                currentDate.setDate(0); // Set to the last day of the previous month
+                currentDate.setMonth(currentDate.getMonth() - 1);
+            }
+
+            updateCurrentDate();
+            renderCalendar();
+        });
+
+        nextIcon.addEventListener("click", () => {
+            const lastDateofMonth = new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth() + 1,
+                0
+            ).getDate();
+
+            if (currentDate.getDate() < lastDateofMonth) {
+                currentDate.setDate(currentDate.getDate() + 1);
+            } else {
+                currentDate.setDate(1); // Reset date to 1st of the new month
+                currentDate.setMonth(currentDate.getMonth() + 1); // Set to the next month
+            }
+
+            updateCurrentDate();
+            renderCalendar();
+        });
+
+        const renderCalendar = () => {
+            let firstDayofMonth = new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth(),
+                1
+            ).getDay();
+            let lastDateofMonth = new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth() + 1,
+                0
+            ).getDate();
+            let liTag = "";
+
+            for (let i = 1; i <= lastDateofMonth; i++) {
+                if (i === currentDate.getDate()) {
+                    liTag += `<li class="active">${i}</li>`;
+                } else {
+                    liTag += `<li>${i}</li>`;
+                }
+            }
+
+            daysTag.innerHTML = liTag;
+        };
+
+        //Timeslot selection
+        // JavaScript code to handle time slot selection
+        const timeSlots = document.querySelectorAll(".time");
+
+        function handleTimeSlotClick(event) {
+            // Remove "active" class from all time slots
+            timeSlots.forEach((slot) => {
+                slot.classList.remove("active");
+            });
+
+            // Add "active" class to the clicked time slot
+            event.target.classList.add("active");
+        }
+
+        // Add click event listeners to each time slot
+        timeSlots.forEach((slot) => {
+            slot.addEventListener("click", handleTimeSlotClick);
+        });
+
+        //modal box
+        document.addEventListener("DOMContentLoaded", () => {
+            const openModalButtons = document.querySelectorAll("[data-modal-target]");
+            const closeModalButtons = document.querySelectorAll("[data-close-button]");
+            const overlay = document.getElementById("overlay");
+            const modal = document.querySelector(".modal");
+
+            openModalButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    openModal(modal);
+                });
+            });
+
+            overlay.addEventListener("click", () => {
+                closeModal(modal);
+            });
+
+            closeModalButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    closeModal(modal);
+                });
+            });
+
+            // Close modal when the modal's close button is clicked
+            const modalCloseButton = modal.querySelector(".close-button");
+            if (modalCloseButton) {
+                modalCloseButton.addEventListener("click", () => {
+                    console.log("Close button clicked");
+                    closeModal(modal);
+                });
+            }
+
+            function openModal(modal) {
+                if (modal == null) return;
+                modal.classList.add("active");
+                overlay.classList.add("active");
+            }
+
+            function closeModal(modal) {
+                if (modal == null) return;
+                modal.classList.remove("active");
+                overlay.classList.remove("active");
+            }
+        });
+
+        //Hiding function
+        const homeNavItem = document.querySelector(".nav-item:nth-child(1)");
+        const profileNavItem = document.querySelector(".nav-item:nth-child(2)");
+        const homeSection = document.getElementById("homeSection");
+        const profileSection = document.getElementById("profileSection");
+
+        function showSection(section) {
+            section.classList.remove("hide");
+            section.classList.add("show");
+        }
+
+        function hideSection(section) {
+            section.classList.remove("show");
+            section.classList.add("hide");
+        }
+
+        homeNavItem.addEventListener("click", () => {
+            showSection(homeSection);
+            hideSection(profileSection);
+        });
+
+        profileNavItem.addEventListener("click", () => {
+            showSection(profileSection);
+            hideSection(homeSection);
+        });
+    </script>
+</body>
+
+</html>

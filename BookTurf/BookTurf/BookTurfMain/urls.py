@@ -31,5 +31,7 @@ urlpatterns = [
     path('BookTurfMain/turf_profile/<int:id>/populate_timeslot',views.ajax_date_and_timeslot_update,name="ajax_date_and_timeslot_update"),
     path('BookTurfMain/date-view/', views.date_view, name='date_view'),
     path('BookTurfMain/submit_booking/', views.submit_booking, name='submit_booking'),
+    path('BookTurfMain/reserve/', views.reserve, name='reserve'),
+    path('BookTurfMain/turf_page/', views.turf_page, name='turf_page'),
 
 ]

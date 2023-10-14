@@ -159,5 +159,6 @@ class Turf_Booked(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     turf_price = models.IntegerField(default=999999999)
     turf_timeslot = models.CharField(default="timeslot...",max_length=200)
-    turf_field_booked = models.IntegerField(default=999)
+    turf_date = models.CharField(default="datee...",max_length=200)
+    # turf_field_booked = models.IntegerField(default=999)
     # turf_transcation_id

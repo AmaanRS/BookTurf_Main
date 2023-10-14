@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
-from .models import Turf_Profile
+from .models import Turf_Profile,Turf_Booked
 from .models import addmin
 from .models import Turf_Pics
 from django.http import HttpResponse, JsonResponse
@@ -70,7 +70,7 @@ def sign_up_authenticate(request):
             return redirect('/BookTurf/BookTurfMain/sign_up/')
     except Exception as e:
         messages.success(request,e)
-        return render(request,'BookTurfMain/sign_up.html')
+        return redirect('/BookTurf/BookTurfMain/sign_up/')
 
 def login_page(request):
     return render(request,'BookTurfMain/login_page.html')
@@ -320,10 +320,14 @@ def date_view(request):
 
     return HttpResponse("Invalid request method", content_type="text/plain")
 
+selected_time_slot = ""
+datess = ""
 def submit_booking(request):
     if request.method == 'POST':
         # Get the data from the form
+        global selected_time_slot
         selected_time_slot = request.POST.get('selectedTimeSlotValue')  # Updated variable name
+        global datess
         datess = request.POST.get('datessValue')  # Updated variable name
 
         # Process the data (you can save it to the database or perform any other actions)
@@ -339,3 +343,30 @@ def submit_booking(request):
 
     # Handle GET requests or other cases
     return JsonResponse({'error': 'Invalid request'})
+
+def reserve(request):
+    if(request.method == "POST"):
+        if(request.user.is_authenticated):
+            user_email = request.user
+            turf_profile_id = request.POST["turf_profile_id"]
+            # global profile_number
+            # profile_number = request.get_full_path()
+            # print(selected_time_slot)
+            # print(datess)
+            # print(request.user)
+            # print(turf_profile_id)
+            turf_profile = Turf_Profile.objects.get(turf_id = turf_profile_id)
+            print(turf_profile)
+            user = User.objects.get(email=user_email)
+            print(user)
+            turf_profile_booked = Turf_Booked(turf_profile=turf_profile,user=user,turf_timeslot=selected_time_slot,turf_date=datess)
+            turf_profile_booked.save()
+            return redirect('index')
+        else:
+            return redirect(login_page)
+
+def turf_page(request):
+    turf_booked = Turf_Booked.objects.all()
+    params = {"turf_booked" : turf_booked}
+    return render(request,"BookTurfMain/turf_page.html",params)
+

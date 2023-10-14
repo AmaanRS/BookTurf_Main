@@ -231,9 +231,13 @@
           <p class="date">July 15</p>
         </div>
       </div>
+      <form method="post" action="/BookTurf/BookTurfMain/reserve/"> 
+        {% csrf_token %}
       <div class="right-section">
+        <input type="hidden" name="turf_profile_id" value={{profile.turf_id}}>
         <button class="reserve-btn" type="submit">Reserve</button>
       </div>
+    </form>
     </div> 
 {% endfor %}
     <script>
