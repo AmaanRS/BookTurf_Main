@@ -226,13 +226,17 @@
     <div class="turf-booking-block">
       <div class="turf-photo">
         <!-- Insert your turf photo here -->
-        <img src="/Frontend/src/assets/turf sample.jpeg" alt="Turf Photo" />
+        {% comment %} <img src="{{photo.url}}" alt="Turf Photo" />
+        <p>{{photo.turf_picture}}</p> {% endcomment %}
+        {% comment %} <img src="/Frontend/src/assets/turf sample.jpeg" alt="Turf Photo" /> {% endcomment %}
+        {% for photo in photo %}
+          <img src="{{ photo.turf_picture.url }}" alt="Turf Photo">
+        {% endfor %}
       </div>
       <div class="turf-details">
-        <h2 class="turf-name">Lush Turf, Mira Road</h2>
+        <h2 class="turf-name">{{name}}</h2>
         <p class="turf-address">
-          Lush lawn, Penkarpada rd, opp. Bhaktivedanta Hospital, Shristhi, Mira
-          Rd(E)
+          {{address}}
         </p>
       </div>
     </div>
@@ -240,9 +244,9 @@
     <div class="booking-detail-block">
       <h2 class="booking-heading">Your Booking</h2>
       <h3 class="subheading">Dates</h3>
-      <p class="actual-date">31 Jul</p>
+      <p class="actual-date">{{date}}</p>
       <h3 class="subheading">Time Slots</h3>
-      <div class="time-slots">7pm-9pm</div>
+      <div class="time-slots">{{timeslot}}</div>
     </div>
     <hr class="divider" />
     <div class="booking-detail-block">
@@ -266,7 +270,6 @@
         </div>
         <!-- Add more timeslots and prices as needed -->
       </div>
-
       <div class="total-price-block">
         <div class="total-label">Total</div>
         <div class="total-price">₹1600</div>
@@ -275,11 +278,11 @@
     </div>
     <hr class="divider" />
     <div class="confirm-button-container">
-      <button class="confirm-button">
+      {% comment %} <button class="confirm-button">
         <a href="/Frontend/src/pages/My_profile/my_profile.html"
           >Confirm Booking</a
         >
-      </button>
+      </button> {% endcomment %}
     </div>
   </body>
 </html>

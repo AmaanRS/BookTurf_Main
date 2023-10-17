@@ -26,7 +26,6 @@ class Turf_Profile(models.Model):
     turf_ownerContact_number = models.BigIntegerField(default=9999999991)
     # turf_reviews = models.CharField(max_length=200,default="")
     turf_price = models.IntegerField(default=9999991)
-    turf_host_name = models.CharField(max_length=100,default="")
     turf_map = models.CharField(max_length=300,default="")
     turf_weekday_base = models.IntegerField(default=9999999)
     turf_weekday_peak = models.IntegerField(default=9999999)
@@ -162,3 +161,11 @@ class Turf_Booked(models.Model):
     turf_date = models.CharField(default="datee...",max_length=200)
     # turf_field_booked = models.IntegerField(default=999)
     # turf_transcation_id
+
+
+
+class Turf_Host(models.Model):
+    turf_profile = models.ForeignKey(Turf_Profile,on_delete=models.CASCADE)
+    username = models.CharField(default="username...",max_length=200)
+    email = models.CharField(default="email...",max_length=200)
+    password = models.CharField(default="password...",max_length=200)

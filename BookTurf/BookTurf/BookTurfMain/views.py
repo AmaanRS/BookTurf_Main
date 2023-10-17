@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from .models import Turf_Profile,Turf_Booked
 from .models import addmin
-from .models import Turf_Pics
+from .models import Turf_Pics,Turf_Host
 from django.http import HttpResponse, JsonResponse
 import datetime
 
@@ -149,7 +149,9 @@ def createTurf_Profile(request):
         turf_address = request.POST['turf_address']
         turf_ownerContact_number = request.POST['turf_ownerContact_number']
         # turf_reviews =request.POST['turf_reviews']
-        turf_host_name =request.POST['turf_host_name']
+        host_username =request.POST['host_username']
+        host_email =request.POST['host_email']
+        host_password =request.POST['host_password']
         turf_map =request.POST['turf_map']
         turf_price =request.POST['turf_price']
         turf_picture =request.FILES.getlist('turf_picture')
@@ -254,7 +256,7 @@ def createTurf_Profile(request):
             new_turf_profile = Turf_Profile(turf_name=turf_name,turf_rating=turf_rating,turf_category_1=turf_category_1,
                                              turf_category_2=turf_category_2,turf_category_3=turf_category_3,turf_category_4=turf_category_4,
                                              turf_description=turf_description,turf_rules_regulations=turf_rules_regulations,turf_address=turf_address,
-                                             turf_ownerContact_number=turf_ownerContact_number,turf_host_name=turf_host_name,turf_map=turf_map,turf_price=turf_price,
+                                             turf_ownerContact_number=turf_ownerContact_number,turf_map=turf_map,turf_price=turf_price,
                                             turf_weekday_base=turf_weekday_base,turf_weekday_peak=turf_weekday_peak,turf_friday_base=turf_friday_base,
                                             turf_friday_peak=turf_friday_peak,turf_saturday_base=turf_saturday_base,turf_saturday_peak=turf_saturday_peak,
                                             turf_sunday_base=turf_sunday_base,turf_sunday_peak=turf_sunday_peak,removed_timeslot=removed_timeslot,peak_timeslot=peak_timeslot)
@@ -264,6 +266,8 @@ def createTurf_Profile(request):
             new_turf_profile.save()
             for pic in range(len(new_turf_pic.turf_picture)) :
                 Turf_Pics(turf_ref=new_turf_profile,turf_picture=turf_picture[pic]).save()
+            new_turf_host = Turf_Host(turf_profile=new_turf_profile,username=host_username,email=host_email,password=host_password)
+            new_turf_host.save()
             # for new_pic in range(len(new_turf_pic.turf_picture)) :
             #     new_pic.save()
             # for new_pic in new_turf_pic.turf_picture:
@@ -356,14 +360,17 @@ def reserve(request):
             # print(request.user)
             # print(turf_profile_id)
             turf_profile = Turf_Profile.objects.get(turf_id = turf_profile_id)
-            print(turf_profile)
             user = User.objects.get(email=user_email)
-            print(user)
             turf_profile_booked = Turf_Booked(turf_profile=turf_profile,user=user,turf_timeslot=selected_time_slot,turf_date=datess)
             turf_profile_booked.save()
-            return redirect('index')
+            turf_pics = Turf_Pics.objects.filter(turf_ref = turf_profile_id)[:1]
+            params = {"photo":turf_pics,"name":turf_profile.turf_name,"address":turf_profile.turf_address,"date":datess,"timeslot":selected_time_slot}
+            return render(request,"BookTurfMain/check_out.html",params)
         else:
             return redirect(login_page)
+
+def check_out(request):
+    return render(request,"BookTurfMain/check_out.html")
 
 def turf_page(request):
     turf_booked = Turf_Booked.objects.all()
