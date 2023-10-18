@@ -25,6 +25,8 @@ urlpatterns = [
     path('BookTurfMain/sign_up/authenticate/',views.sign_up_authenticate,name="sign_up_authenticate"),
     path('BookTurfMain/login_page/',views.login_page,name="login_page"),
     path('BookTurfMain/login_page/authenticate/',views.login_page_authenticate,name="login_page_authenticate"),
+    path('BookTurfMain/host_login/authenticate/',views.host_login_authenticate,name="host_login_authenticate"),
+    path('BookTurfMain/host_login/',views.host_login,name="host_login"),
     path('BookTurfMain/turf_profile/<int:id>/',views.turf_profile,name="turf_profile"),
     path('BookTurfMain/add_turf_profile/',views.add_turf_profile,name="add_turf_profile"),
     path('BookTurfMain/add_turf_profile/createTurf_Profile/',views.createTurf_Profile,name="createTurf_Profile"),
@@ -33,6 +35,6 @@ urlpatterns = [
     path('BookTurfMain/submit_booking/', views.submit_booking, name='submit_booking'),
     path('BookTurfMain/reserve/', views.reserve, name='reserve'),
     path('BookTurfMain/check_out/', views.check_out, name='check_out'),
-    path('BookTurfMain/turf_page/', views.turf_page, name='turf_page'),
+    # path('BookTurfMain/turf_page/', views.turf_page, name='turf_page'),
 
 ]

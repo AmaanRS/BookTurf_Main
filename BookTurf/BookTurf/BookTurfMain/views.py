@@ -372,8 +372,29 @@ def reserve(request):
 def check_out(request):
     return render(request,"BookTurfMain/check_out.html")
 
-def turf_page(request):
-    turf_booked = Turf_Booked.objects.all()
-    params = {"turf_booked" : turf_booked}
-    return render(request,"BookTurfMain/turf_page.html",params)
+# def turf_page(request):
+#     turf_booked = Turf_Booked.objects.all()
+#     params = {"turf_booked" : turf_booked}
+#     return render(request,"BookTurfMain/turf_page.html",params)
+
+def host_login(request):
+    return render(request,"BookTurfMain/host_login.html")
+
+def host_login_authenticate(request):
+    if(request.method == "POST"):
+        email = request.POST["email"]
+        password = request.POST["password"]
+        try:
+            host = Turf_Host.objects.get(email=email,password=password)
+            if(host is not None):
+                turf_booked = Turf_Booked.objects.filter(turf_profile=host.turf_profile)
+                params = {"turf_booked" : turf_booked}
+                return render(request,"BookTurfMain/turf_page.html",params)
+            else:
+                return render(request,"BookTurfMain/host_login.html")
+        except:
+            return render(request,"BookTurfMain/host_login.html")
+
+    else:
+        return render(request,"BookTurfMain/host_login.html")
 

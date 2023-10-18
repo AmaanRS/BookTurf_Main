@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 import os
 from django.db.models.signals import post_save , pre_save
 from django.dispatch import receiver
+# from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 # CHOICES = (
@@ -169,3 +170,9 @@ class Turf_Host(models.Model):
     username = models.CharField(default="username...",max_length=200)
     email = models.CharField(default="email...",max_length=200)
     password = models.CharField(default="password...",max_length=200)
+
+
+# class Turf_Host(models.Model):
+#     id = models.IntegerField(primary_key=True,default=999999999)
+#     user = models.ForeignKey(User,on_delete=models.CASCADE)
+#     turf_profile = models.ForeignKey(Turf_Profile,on_delete=models.CASCADE)
