@@ -1,18 +1,28 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Host Login</title>
+    <link rel="stylesheet" href="{% static '/BookTurfMain/pages/Login-page/login.css' %}" />
 </head>
 <body>
-    <form method="post" action="/BookTurf/BookTurfMain/host_login/authenticate/">
+    <div class="container">
+        <h2>Host Login</h2>
+    <form class="login-form" method="post" action="/BookTurf/BookTurfMain/host_login/authenticate/">
         {% csrf_token %}
-    Email
+    {% comment %} Email
     <input type="email" name="email">
     Password
     <input type="password" name="password">
-    <button type="submit">Submit</button>
+    <button type="submit">Submit</button> {% endcomment %}
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required />
+      <input type="submit"></input>
 </form>
+</div>
 </body>
 </html>

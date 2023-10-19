@@ -26,7 +26,7 @@ class Turf_Profile(models.Model):
     turf_address = models.CharField(max_length=200,default="Please enter the address owner")
     turf_ownerContact_number = models.BigIntegerField(default=9999999991)
     # turf_reviews = models.CharField(max_length=200,default="")
-    turf_price = models.IntegerField(default=9999991)
+    turf_price = models.IntegerField(default=800)
     turf_map = models.CharField(max_length=300,default="")
     turf_weekday_base = models.IntegerField(default=9999999)
     turf_weekday_peak = models.IntegerField(default=9999999)

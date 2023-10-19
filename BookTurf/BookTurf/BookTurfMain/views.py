@@ -389,7 +389,7 @@ def host_login_authenticate(request):
             if(host is not None):
                 turf_booked = Turf_Booked.objects.filter(turf_profile=host.turf_profile)
                 params = {"turf_booked" : turf_booked}
-                return render(request,"BookTurfMain/turf_page.html",params)
+                return render(request,"BookTurfMain/turf_page_wase.html",params)
             else:
                 return render(request,"BookTurfMain/host_login.html")
         except:

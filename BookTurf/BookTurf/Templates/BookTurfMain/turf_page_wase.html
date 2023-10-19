@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+    {% load static %}
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Turf HomePage</title>
@@ -8,9 +8,11 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
-        /* Reset some default styles 
-color: #F3694E #196670  #dde2e9
-#474747*/
+        
+      /* Reset some default styles 
+      color: #F3694E #196670  #dde2e9
+      #474747*/
+
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
         body {
@@ -421,13 +423,38 @@ color: #F3694E #196670  #dde2e9
             border: none;
             outline: none;
         }
+
+        /* Add CSS for the responsive table */
+       .table-responsive {
+         overflow-x: auto;
+        }
+
+        table {
+       width: 100%;
+       border-collapse: collapse;
+         }
+
+       th, td {
+       border: 1px solid #ccc; /* Add borders to columns and rows */
+        padding: 8px;
+        text-align: left;
+     }
+
+         /* Adjust styles for mobile screens */
+           @media (max-width: 767px) {
+             th, td {
+        font-size: 14px; /* Adjust font size for mobile screens */
+         }
+      }
+
     </style>
 </head>
 
 <body>
     <div class="navbar">
         <div class="logo-container">
-            <img src="/Frontend/src/assets/logomain.png" alt="Logo" class="logo-img" />
+            <a href="/BookTurf/BookTurfMain/index">
+            <img src="{%  static '/BookTurfMain/assets/logomain.png' %}" alt="Logo" class="logo-img" /></a>
         </div>
         <div class="nav-items">
             <div class="nav-item-container">
@@ -440,89 +467,25 @@ color: #F3694E #196670  #dde2e9
     <hr class="divider" />-->
     <div class="section home-section show" id="homeSection">
         <!-- Home section content -->
-
-        <div class="box-container">
-            <div class="box">
-                <p><b>Total Revenue:</b> ₹3,00,000 <br /><b>This week:</b> ₹15,000</p>
-            </div>
-            <div class="box1">
-                <p>Payment Log</p>
-            </div>
-        </div>
-        <!--
-    <hr class="divider" />-->
-        <div class="other-block">
-            <div class="date">
-                <div class="wrapper">
-                    <header>
-                        <p class="current-date"></p>
-                        <div class="icons">
-                            <span id="prev" class="material-symbols-rounded">chevron_left</span>
-                            <span id="next" class="material-symbols-rounded">chevron_right</span>
-                        </div>
-                    </header>
-                </div>
-            </div>
-            <h3 class="time-heading">Available Timeslots</h3>
-            <div class="timegrid">
-                <div class="grid-container">
-                    <div class="time" data-modal-target=".modal">5-6 am</div>
-                    <div class="time" data-modal-target=".modal">6-7 am</div>
-                    <div class="time" data-modal-target=".modal">7-8 am</div>
-                    <div class="time" data-modal-target=".modal">8-9 am</div>
-                    <div class="time" data-modal-target=".modal">9-10 am</div>
-                    <div class="time" data-modal-target=".modal">10-11 am</div>
-                    <div class="time" data-modal-target=".modal">11-12 pm</div>
-                    <div class="time" data-modal-target=".modal">12-1 pm</div>
-                    <div class="time" data-modal-target=".modal">1-2 pm</div>
-                    <div class="time" data-modal-target=".modal">2-3 pm</div>
-                    <div class="time" data-modal-target=".modal">3-4 pm</div>
-                    <div class="time" data-modal-target=".modal">4-5 pm</div>
-                    <div class="time" data-modal-target=".modal">5-6 pm</div>
-                    <div class="time" data-modal-target=".modal">6-7 pm</div>
-                    <div class="time" data-modal-target=".modal">7-8 pm</div>
-                    <div class="time" data-modal-target=".modal">8-9 pm</div>
-                    <div class="time" data-modal-target=".modal">9-10 pm</div>
-                    <div class="time" data-modal-target=".modal">10-11 pm</div>
-                    <div class="time" data-modal-target=".modal">11-12 am</div>
-                    <div class="time" data-modal-target=".modal">12-1 am</div>
-                    <div class="time" data-modal-target=".modal">1-2 am</div>
-                    <div class="time" data-modal-target=".modal">2-3 am</div>
-                    <div class="time" data-modal-target=".modal">3-4 am</div>
-                    <div class="time" data-modal-target=".modal">4-5 am</div>
-                </div>
-            </div>
-            <div class="modal-overlay" id="overlay"></div>
-            <div class="modal" id="modal">
-                <div class="modal-content">
-                    <button class="close-button" id="closeButton">&times;</button>
-                    <h3>Timeslot</h3>
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" />
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingId">Booking ID:</label>
-                        <input type="text" id="bookingId" />
-                    </div>
-                    <div class="form-group">
-                        <label for="number">Number:</label>
-                        <input type="text" id="number" />
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Booking Status:</label>
-                        <select id="status">
-                            <option value="advance">Advance</option>
-                            <option value="full">Full</option>
-                            <option value="none">None</option>
-                        </select>
-                    </div>
-                    <div class="button-container">
-                        <button id="cancelBooking">Cancel Booking</button>
-                        <button id="confirmBooking">Confirm Booking</button>
-                    </div>
-                </div>
-            </div>
+        <div class="table-responsive">
+        <table>
+            <tr>
+              <th>Turf Name</th>
+              <th>User</th>
+              <th>Price</th>
+              <th>Timeslot</th>
+              <th>Date</th>
+            </tr>
+            {% for turf in turf_booked %}
+            <tr>
+              <td>{{turf.turf_profile}}</td>
+              <td>{{turf.user}}</td>
+              <td>{{turf.turf_price}}</td>
+              <td>{{turf.turf_timeslot}}</td>
+              <td>{{turf.turf_date}}</td>
+            </tr>
+            {% endfor %}
+          </table>
         </div>
     </div>
     <div class="section profile-section hide" id="profileSection">
@@ -569,6 +532,7 @@ color: #F3694E #196670  #dde2e9
             </div>
         </div>
     </div>
+    
     <script defer>
         const currentDateElement = document.querySelector(".current-date");
         const prevIcon = document.getElementById("prev");
