@@ -157,7 +157,7 @@ class addmin(models.Model):
 class Turf_Booked(models.Model):
     turf_profile = models.ForeignKey(Turf_Profile,on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    turf_price = models.IntegerField(default=999999999)
+    turf_price = models.IntegerField(default=800)
     turf_timeslot = models.CharField(default="timeslot...",max_length=200)
     turf_date = models.CharField(default="datee...",max_length=200)
     # turf_field_booked = models.IntegerField(default=999)
