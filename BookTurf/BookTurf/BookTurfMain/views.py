@@ -398,3 +398,20 @@ def host_login_authenticate(request):
     else:
         return render(request,"BookTurfMain/host_login.html")
 
+def delete_booking(request):
+    if(request.method == "POST"):
+        turfId = request.POST['turfId']
+        userId = request.POST['userId']
+        timeslot = request.POST['timeslot']
+        date = request.POST['date']
+        print(turfId)
+        
+        turf_booked = Turf_Booked.objects.get(turf_profile=turfId,user=userId,turf_timeslot=timeslot,turf_date=date)
+        if(turf_booked is not None):
+            turf_booked.delete()
+        else: 
+            return JsonResponse({"status": 'Failure',"Message":"Turf does not exist"}) 
+            
+        return JsonResponse({"status": 'Success',"Message":"Turf deleted please refresh"}) 
+    else:
+        return JsonResponse({"status": 'Failure',"Message":"Did not use POST method"}) 

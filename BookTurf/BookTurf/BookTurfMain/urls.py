@@ -35,6 +35,7 @@ urlpatterns = [
     path('BookTurfMain/submit_booking/', views.submit_booking, name='submit_booking'),
     path('BookTurfMain/reserve/', views.reserve, name='reserve'),
     path('BookTurfMain/check_out/', views.check_out, name='check_out'),
+    path('BookTurfMain/delete_booking/', views.delete_booking, name='delete_booking'),
     # path('BookTurfMain/turf_page/', views.turf_page, name='turf_page'),
 
 ]

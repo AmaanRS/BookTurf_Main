@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
-    {% load static %}
+{% load static %}
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Turf HomePage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"
+        integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
-        
-      /* Reset some default styles 
+        /* Reset some default styles 
       color: #F3694E #196670  #dde2e9
       #474747*/
 
@@ -425,36 +428,56 @@
         }
 
         /* Add CSS for the responsive table */
-       .table-responsive {
-         overflow-x: auto;
+        .table-responsive {
+            overflow-x: auto;
         }
 
         table {
-       width: 100%;
-       border-collapse: collapse;
-         }
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-       th, td {
-       border: 1px solid #ccc; /* Add borders to columns and rows */
-        padding: 8px;
-        text-align: left;
-     }
+        th,
+        td {
+            border: 1px solid #ccc;
+            /* Add borders to columns and rows */
+            padding: 8px;
+            text-align: left;
+        }
 
-         /* Adjust styles for mobile screens */
-           @media (max-width: 767px) {
-             th, td {
-        font-size: 14px; /* Adjust font size for mobile screens */
-         }
-      }
+        /* Adjust styles for mobile screens */
+        @media (max-width: 767px) {
 
+            th,
+            td {
+                font-size: 14px;
+                /* Adjust font size for mobile screens */
+            }
+        }
     </style>
+    <script>
+        const deleteBooking = async (turfId, userId, timeslot, date) => {
+            console.log(turfId)
+            let data = new FormData();
+
+            data.append("turfId", turfId)
+            data.append("userId", userId)
+            data.append("timeslot", timeslot)
+            data.append("date", date)
+            data.append("csrfmiddlewaretoken", '{{csrf_token}}')
+
+            axios.post('/BookTurf/BookTurfMain/delete_booking/', data)
+                .then(res => alert(res.data.Message))
+                .catch(errors => console.log(errors))
+        }
+    </script>
 </head>
 
 <body>
     <div class="navbar">
         <div class="logo-container">
             <a href="/BookTurf/BookTurfMain/index">
-            <img src="{%  static '/BookTurfMain/assets/logomain.png' %}" alt="Logo" class="logo-img" /></a>
+                <img src="{%  static '/BookTurfMain/assets/logomain.png' %}" alt="Logo" class="logo-img" /></a>
         </div>
         <div class="nav-items">
             <div class="nav-item-container">
@@ -468,24 +491,28 @@
     <div class="section home-section show" id="homeSection">
         <!-- Home section content -->
         <div class="table-responsive">
-        <table>
-            <tr>
-              <th>Turf Name</th>
-              <th>User</th>
-              <th>Price</th>
-              <th>Timeslot</th>
-              <th>Date</th>
-            </tr>
-            {% for turf in turf_booked %}
-            <tr>
-              <td>{{turf.turf_profile}}</td>
-              <td>{{turf.user}}</td>
-              <td>{{turf.turf_price}}</td>
-              <td>{{turf.turf_timeslot}}</td>
-              <td>{{turf.turf_date}}</td>
-            </tr>
-            {% endfor %}
-          </table>
+            <table>
+                <tr>
+                    <th>Turf Name</th>
+                    <th>User</th>
+                    <th>Price</th>
+                    <th>Timeslot</th>
+                    <th>Date</th>
+                    <th>Delete</th>
+                </tr>
+                {% for turf in turf_booked %}
+                <tr>
+                    <td>{{turf.turf_profile}}</td>
+                    <td>{{turf.user}}</td>
+                    <td>{{turf.turf_price}}</td>
+                    <td>{{turf.turf_timeslot}}</td>
+                    <td>{{turf.turf_date}}</td>
+                    <td><button
+                            onclick="deleteBooking('{{turf.turf_profile.turf_id}}','{{turf.user.id}}','{{turf.turf_timeslot}}','{{turf.turf_date}}')">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
     <div class="section profile-section hide" id="profileSection">
@@ -532,7 +559,7 @@
             </div>
         </div>
     </div>
-    
+
     <script defer>
         const currentDateElement = document.querySelector(".current-date");
         const prevIcon = document.getElementById("prev");
@@ -711,6 +738,8 @@
             showSection(profileSection);
             hideSection(homeSection);
         });
+
+
     </script>
 </body>
 
