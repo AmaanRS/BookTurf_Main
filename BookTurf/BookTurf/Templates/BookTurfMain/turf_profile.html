@@ -127,12 +127,12 @@
           {% if time_slot in profile.removed_timeslot%}
         <div class="time-slot">
           <li class="time" value="{{ time_slot }}">{{ time_slot }}</li>
-          <li class="perhourprice">Close</li> 
+          {% comment %} <li class="perhourprice">Close</li>  {% endcomment %}
         </div>
         {%else%}
         <div class="time-slot">
           <li class="time" value="{{ time_slot }}">{{ time_slot }}</li>
-          <li class="perhourprice">&#8377;1200</li> 
+          {% comment %} <li class="perhourprice">&#8377;1200</li>  {% endcomment %}
         </div>
         {%endif%}
       {% endfor %}
