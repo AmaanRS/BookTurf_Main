@@ -163,34 +163,6 @@ def createTurf_Profile(request):
         turf_saturday_peak = request.POST['turf_saturday_peak']
         turf_sunday_base = request.POST['turf_sunday_base']
         turf_sunday_peak = request.POST['turf_sunday_peak']
-        # turf_field_1 = request.POST['turf_field_1']
-        # turf_field_2 = request.POST['turf_field_2']
-        # turf_field_3 = request.POST['turf_field_3']
-
-        # remove_timeslot_1 = request.POST['time_slot_1']
-        # remove_timeslot_2 = request.POST['time_slot_2']
-        # remove_timeslot_3 = request.POST['time_slot_3']
-        # remove_timeslot_4 = request.POST['time_slot_4']
-        # remove_timeslot_5 = request.POST['time_slot_5']
-        # remove_timeslot_6 = request.POST['time_slot_6']
-        # remove_timeslot_7 = request.POST['time_slot_7']
-        # remove_timeslot_8 = request.POST['time_slot_8']
-        # remove_timeslot_9 = request.POST['time_slot_9']
-        # remove_timeslot_10 = request.POST['time_slot_10']
-        # remove_timeslot_11 = request.POST['time_slot_11']
-        # remove_timeslot_12 = request.POST['time_slot_12']
-        # remove_timeslot_13 = request.POST['time_slot_13']
-        # remove_timeslot_14 = request.POST['time_slot_14']
-        # remove_timeslot_15 = request.POST['time_slot_15']
-        # remove_timeslot_16 = request.POST['time_slot_16']
-        # remove_timeslot_17 = request.POST['time_slot_17']
-        # remove_timeslot_18 = request.POST['time_slot_18']
-        # remove_timeslot_19 = request.POST['time_slot_19']
-        # remove_timeslot_20 = request.POST['time_slot_20']
-        # remove_timeslot_21 = request.POST['time_slot_21']
-        # remove_timeslot_22 = request.POST['time_slot_22']
-        # remove_timeslot_23 = request.POST['time_slot_23']
-        # remove_timeslot_24 = request.POST['time_slot_24']
 
         remove_timeslot_start = request.POST['remove_time_slot_start'].split(" ")
         remove_timeslot_end = request.POST['remove_time_slot_end'].split(" ")
@@ -303,8 +275,6 @@ def ajax_date_and_timeslot_update(request):
 
 def date_view(request):
     if request.method == "POST":
-        
-        
         date_toggle_value = request.POST.get("dateToggleValue")
        
 
@@ -353,6 +323,7 @@ def reserve(request):
         if(request.user.is_authenticated):
             user_email = request.user
             turf_profile_id = request.POST["turf_profile_id"]
+            Turf_Booked_instance = Turf_Booked.objects.filter(turf_profile=turf_profile_id)            
             # global profile_number
             # profile_number = request.get_full_path()
             # print(selected_time_slot)
@@ -362,8 +333,12 @@ def reserve(request):
             turf_profile = Turf_Profile.objects.get(turf_id = turf_profile_id)
             user = User.objects.get(email=user_email)
             turf_profile_booked = Turf_Booked(turf_profile=turf_profile,user=user,turf_timeslot=selected_time_slot,turf_date=datess)
-            turf_profile_booked.save()
             turf_pics = Turf_Pics.objects.filter(turf_ref = turf_profile_id)[:1]
+            for turf_booked in Turf_Booked_instance:
+                if(turf_booked.turf_date == datess or turf_booked.turf_timeslot == selected_time_slot):
+                    params = {"photo":turf_pics,"name":turf_profile.turf_name,"address":turf_profile.turf_address,"date":"Not booked turf is in use during this date","timeslot":"Not booked turf is in use during this time"}
+                    return render(request,"BookTurfMain/check_out.html",params)
+            turf_profile_booked.save()
             params = {"photo":turf_pics,"name":turf_profile.turf_name,"address":turf_profile.turf_address,"date":datess,"timeslot":selected_time_slot}
             return render(request,"BookTurfMain/check_out.html",params)
         else:
