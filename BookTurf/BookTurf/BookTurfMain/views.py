@@ -41,7 +41,6 @@ def index(request):
                 if pic.turf_ref_id == profile.turf_id:
                     first_pics[profile.turf_id] = pic
                     break
-
         params = {"profiles": profiles, "pics": first_pics}
         return render(request, 'BookTurfMain/index.html', params)
 
