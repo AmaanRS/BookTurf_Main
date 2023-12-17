@@ -115,7 +115,7 @@ WSGI_APPLICATION = 'BookTurfProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BookTurfDatabase',
+        'NAME': 'BookTurfData',
         'USER': 'root',
         'PASSWORD': 'Strong@123',
         'HOST': '127.0.0.1',
